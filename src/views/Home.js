@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Home = () => {
   return (
     <div>
@@ -8,8 +10,6 @@ const Home = () => {
         <label for='password'>Password</label>
         <input name='password' type='password'></input>
       </form>
-
-      <h3>Create new account</h3>
     </div>
   );
 };

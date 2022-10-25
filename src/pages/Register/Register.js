@@ -3,6 +3,7 @@ import styles from './Register.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../config';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -24,7 +25,7 @@ const Register = () => {
   const register = async () => {
     try {
       await axios
-        .post('http://localhost:8080/add-user', {
+        .post(baseUrl + '/add-user', {
           firstName: firstName,
           lastName: lastName,
           username: username,

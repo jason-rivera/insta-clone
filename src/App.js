@@ -1,16 +1,25 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Register from './pages/Register/Register';
-import Navbar from './components/Navbar';
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
-    <Router>
-      <div className='nav-container'>
-        <Navbar />
-      </div>
-
+    <>
+      <nav className='nav-container'>
+        <ul>
+          <li>
+            <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/about'>About</Link>
+          </li>
+          <li>
+            <Link to='/register'>Register</Link>
+          </li>
+        </ul>
+      </nav>
       <div className='content-container'>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -18,7 +27,7 @@ function App() {
           <Route path='/register' element={<Register />} />
         </Routes>
       </div>
-    </Router>
+    </>
   );
 }
 

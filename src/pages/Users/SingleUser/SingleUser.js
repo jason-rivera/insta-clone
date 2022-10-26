@@ -19,7 +19,6 @@ const SingleUser = () => {
       <p>First name: {singleUser.firstName}</p>
       <p>Last name: {singleUser.lastName}</p>
       <p>Email: {singleUser.email}</p>
-      <button onClick={() => getUserByUsername()}>getuserbyid</button>
     </div>
   );
 };

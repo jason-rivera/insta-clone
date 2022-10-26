@@ -10,18 +10,40 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(username);
-    console.log(password);
-  }, [username, password]);
+  // useEffect(() => {
+  //   console.log(username);
+  //   console.log(password);
+  // }, [username, password]);
 
   const getUsers = async () => {
     try {
-      await axios.get(baseUrl + '/get-users').then((response) => {
+      await axios.get(baseUrl + '/get-all-users').then((response) => {
         console.log(response);
       });
     } catch (e) {
       console.log(e.response);
+    }
+  };
+
+  const getOwnData = async () => {
+    const verification = await axios.post(baseUrl + '/auth/verify-jwt', {
+      accessToken: localStorage.getItem('accessToken'),
+    });
+
+    console.log('starting getOwnData');
+
+    if (verification.status === 200) {
+      try {
+        await axios.get(baseUrl + '/get-own-data').then((response) => {
+          console.log(response);
+        });
+      } catch (e) {
+        console.log(e.response);
+      }
+    } else {
+      console.log(
+        'could not verify JWT [also, fix this part, say correct message]'
+      );
     }
   };
 
@@ -48,6 +70,10 @@ const Home = () => {
       });
       console.log('sent login credentials', username, password);
       console.log(response, 'the response from endpoint');
+
+      console.log(response.data.accessToken, 'hello world');
+      localStorage.setItem('accessToken', response.data.accessToken);
+
       if (response.status === 200) {
         navigate('/test');
       }
@@ -100,9 +126,15 @@ const Home = () => {
       <br />
       <br />
       <br />
-      <button type='button' onClick={getUsers}>
-        Test-getUsers
+      <button type='button' onClick={getOwnData}>
+        Test-get-own-data
       </button>
+      <br />
+      <br />
+      <button type='button' onClick={getUsers}>
+        Test-get-all-Users
+      </button>
+      <br />
       <br />
       <button type='button' onClick={deleteAll}>
         Test-deleteAll

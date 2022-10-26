@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../config';
+import { register } from '../api/usersAPI';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -22,22 +23,18 @@ const Register = () => {
   //   console.log(password);
   // }, [firstName, lastName, username, email, password]);
 
-  const register = async () => {
-    try {
-      await axios
-        .post(baseUrl + '/add-user', {
-          firstName: firstName,
-          lastName: lastName,
-          username: username,
-          email: email,
-          password: password,
-        })
-        .then((response) => {
-          console.log(response, 'got here');
-          navigate('/');
-        });
-    } catch (e) {
-      console.error(e);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let response = await register(
+      firstName,
+      lastName,
+      username,
+      email,
+      password
+    );
+
+    if (response.status === 200) {
+      navigate('/');
     }
   };
 
@@ -87,8 +84,8 @@ const Register = () => {
           }}
         ></input>
         <br />
-        <button type='submit' onClick={register}>
-          Test-register
+        <button type='submit' onClick={(e) => handleSubmit(e)}>
+          Register
         </button>
       </form>
     </div>

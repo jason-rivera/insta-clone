@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../../config';
-import { getUserByUsername } from '../../api/usersAPI';
+import { getUserByUsername } from '../../../api/usersAPI';
 
 const SingleUserPage = () => {
   const [singleUser, setSingleUser] = useState({});

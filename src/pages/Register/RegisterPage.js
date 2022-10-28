@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Register.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../api/usersAPI';
+import { register } from '../../api/usersAPI';
 
 const RegisterPage = () => {
   const [firstName, setFirstName] = useState('');

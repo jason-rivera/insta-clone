@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getAllUsers } from '../api/usersAPI';
+import { getAllUsers } from '../../api/usersAPI';
 
 const UsersPage = () => {
   const navigate = useNavigate();

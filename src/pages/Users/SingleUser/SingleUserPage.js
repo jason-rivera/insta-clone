@@ -4,7 +4,7 @@ import axios from 'axios';
 import { baseUrl } from '../../../config';
 import { getUserByUsername } from '../../api/usersAPI';
 
-const SingleUser = () => {
+const SingleUserPage = () => {
   const [singleUser, setSingleUser] = useState({});
   let username = useParams().username;
 
@@ -23,4 +23,4 @@ const SingleUser = () => {
   );
 };
 
-export default SingleUser;
+export default SingleUserPage;

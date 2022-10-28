@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import About from './pages/About/About';
-import Register from './pages/Register/Register';
-import Users from './pages/Users/Users';
-import SingleUser from './pages/Users/SingleUser/SingleUser';
-import Test from './pages/Test/Test';
+import HomePage from './pages/Home/HomePage';
+import AboutPage from './pages/About/AboutPage';
+import RegisterPage from './pages/Register/RegisterPage';
+import UsersPage from './pages/Users/UsersPage';
+import SingleUserPage from './pages/Users/SingleUser/SingleUserPage';
+import LoginPage from './pages/Login/LoginPage';
+import LogoutPage from './pages/Logout/LogoutPage';
 import { Link } from 'react-router-dom';
 
 function App() {
@@ -25,18 +26,19 @@ function App() {
             <Link to='/users'>Users</Link>
           </li>
           <li>
-            <Link to='/test'>Test</Link>
+            <Link to='/logout'>Logout</Link>
           </li>
         </ul>
       </nav>
       <div className='content-container'>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/users' element={<Users />} />
-          <Route path='/users/:username' element={<SingleUser />} />
-          <Route path='/test' element={<Test />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/users' element={<UsersPage />} />
+          <Route path='/users/:username' element={<SingleUserPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/logout' element={<LogoutPage />} />
         </Routes>
       </div>
     </>

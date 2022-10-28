@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getUsers } from '../api/usersAPI';
+import { getAllUsers } from '../api/usersAPI';
 
-const Users = () => {
+const UsersPage = () => {
   const navigate = useNavigate();
 
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     console.log('first effect');
-    getUsers().then((response) => setUsers(response));
+    getAllUsers().then((response) => setUsers(response));
   }, []);
 
   const goTo = (username) => {
@@ -30,4 +30,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default UsersPage;

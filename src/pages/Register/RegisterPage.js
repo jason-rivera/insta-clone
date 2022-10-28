@@ -1,12 +1,10 @@
 import React from 'react';
 import styles from './Register.module.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { baseUrl } from '../../config';
 import { register } from '../api/usersAPI';
 
-const Register = () => {
+const RegisterPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -92,4 +90,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

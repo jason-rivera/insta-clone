@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { baseUrl } from '../../config';
 
-export const getUsers = async () => {
+export const getAllUsers = async () => {
   try {
     let response = await axios.get(baseUrl + '/get-all-users');
     // console.log(response.data, 'from usersAPI');
@@ -24,7 +24,7 @@ export const register = async (
   password
 ) => {
   try {
-    let response = await axios.post(baseUrl + '/add-user', {
+    let response = await axios.post(baseUrl + '/register', {
       firstName: firstName,
       lastName: lastName,
       username: username,

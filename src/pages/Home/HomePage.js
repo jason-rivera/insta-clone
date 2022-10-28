@@ -4,9 +4,10 @@ import { baseUrl } from '../../config';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const HomePage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
 
@@ -15,10 +16,11 @@ const Home = () => {
   //   console.log(password);
   // }, [username, password]);
 
-  const getUsers = async () => {
+  const getAllUsers = async () => {
     try {
       await axios.get(baseUrl + '/get-all-users').then((response) => {
-        console.log(response);
+        console.log(response.data);
+        setUsers(response.data);
       });
     } catch (e) {
       console.log(e.response);
@@ -30,7 +32,7 @@ const Home = () => {
       accessToken: localStorage.getItem('accessToken'),
     });
 
-    console.log('starting getOwnData');
+    console.log(verification, 'starting getOwnData');
 
     if (verification.status === 200) {
       try {
@@ -69,10 +71,14 @@ const Home = () => {
         password: password,
       });
       console.log('sent login credentials', username, password);
-      console.log(response, 'the response from endpoint');
+      console.log(response, 'the response from login endpoint');
 
       console.log(response.data.accessToken, 'hello world');
       localStorage.setItem('accessToken', response.data.accessToken);
+      localStorage.setItem(
+        'userToken',
+        JSON.stringify(response.data.userToken)
+      );
 
       if (response.status === 200) {
         navigate('/test');
@@ -116,6 +122,9 @@ const Home = () => {
       <div id='error-message'></div>
       <br />
       <br />
+      {users.map((user) => (
+        <p key={user._id}>{user.username}</p>
+      ))}
       <br />
       <br />
       <br />
@@ -131,7 +140,7 @@ const Home = () => {
       </button>
       <br />
       <br />
-      <button type='button' onClick={getUsers}>
+      <button type='button' onClick={getAllUsers}>
         Test-get-all-Users
       </button>
       <br />
@@ -143,4 +152,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

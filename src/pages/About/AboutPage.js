@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const About = () => {
+const AboutPage = () => {
   return (
     <div>
       <h1>About</h1>
@@ -9,4 +9,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutPage;

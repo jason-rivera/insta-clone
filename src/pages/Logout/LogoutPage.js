@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../../UserContext';
 
 const removeLocalStorageTokens = () => {
   localStorage.removeItem('accessToken');
@@ -6,9 +7,13 @@ const removeLocalStorageTokens = () => {
 };
 
 const LogoutPage = () => {
+  const { user, setUser } = useContext(UserContext);
+
   useEffect(() => {
     removeLocalStorageTokens();
+    setUser(null);
   }, []);
+
   return (
     <div>
       <h1>Logout Page</h1>

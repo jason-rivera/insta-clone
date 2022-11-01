@@ -82,9 +82,7 @@ const RegisterPage = () => {
           }}
         ></input>
         <br />
-        <button type='submit' onClick={(e) => handleSubmit(e)}>
-          Register
-        </button>
+        <button onClick={(e) => handleSubmit(e)}>Register</button>
       </form>
     </div>
   );

@@ -15,7 +15,8 @@ const LoginPage = () => {
   //   console.log(password);
   // }, [username, password]);
 
-  const getAllUsers = async () => {
+  const getAllUsers = async (e) => {
+    e.preventDefault();
     try {
       await axios.get(baseUrl + '/get-all-users').then((response) => {
         console.log(response.data);
@@ -26,7 +27,8 @@ const LoginPage = () => {
     }
   };
 
-  const getOwnData = async () => {
+  const getOwnData = async (e) => {
+    e.preventDefault();
     const verification = await axios.post(baseUrl + '/auth/verify-jwt', {
       accessToken: localStorage.getItem('accessToken'),
     });
@@ -48,7 +50,8 @@ const LoginPage = () => {
     }
   };
 
-  const deleteAll = async () => {
+  const deleteAll = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios
         .delete(baseUrl + '/delete-all-users')
@@ -60,7 +63,8 @@ const LoginPage = () => {
     }
   };
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     document.getElementById('error-message').innerHTML = '';
 
     console.log('login button clicked');
@@ -92,7 +96,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>Home</h1>
+      <h1>Login Page</h1>
       <form>
         <label htmlFor='username'>Username</label>
         <input
@@ -111,9 +115,7 @@ const LoginPage = () => {
           }}
         ></input>
         <br />
-        <button type='button' onClick={login}>
-          Login
-        </button>
+        <button onClick={(e) => login(e)}>Login</button>
       </form>
 
       <br />
@@ -134,19 +136,13 @@ const LoginPage = () => {
       <br />
       <br />
       <br />
-      <button type='button' onClick={getOwnData}>
-        Test-get-own-data
-      </button>
+      <button onClick={(e) => getOwnData(e)}>Test-get-own-data</button>
       <br />
       <br />
-      <button type='button' onClick={getAllUsers}>
-        Test-get-all-Users
-      </button>
+      <button onClick={(e) => getAllUsers(e)}>Test-get-all-Users</button>
       <br />
       <br />
-      <button type='button' onClick={deleteAll}>
-        Test-deleteAll
-      </button>
+      <button onClick={(e) => deleteAll(e)}>Test-deleteAll</button>
     </div>
   );
 };

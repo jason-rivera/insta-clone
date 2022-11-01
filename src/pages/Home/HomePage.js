@@ -1,10 +1,35 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
+  const handleViewUsersBtn = () => {
+    navigate('/users');
+  };
+  const handleLoginBtn = () => {
+    navigate('/login');
+  };
+  const handleSignupBtn = () => {
+    navigate('/register');
+  };
+
   return (
     <>
-      <h1>HomePage</h1>
+      <h1>Home Page</h1>
       <p>This is the home page</p>
+      <br />
+      <button onClick={() => handleViewUsersBtn()}>
+        View All Current Users
+      </button>
+      <br />
+      <br />
+      <br />
+      <br />
+      <button onClick={() => handleLoginBtn()}>Login</button>
+      <br />
+      <br />
+      <button onClick={() => handleSignupBtn()}>Not A Member? Sign Up!</button>
     </>
   );
 };

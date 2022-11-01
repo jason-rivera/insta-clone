@@ -21,11 +21,13 @@ const UsersPage = () => {
     <div>
       <h1>Users</h1>
       <h2>Here is a list of users:</h2>
-      {users.map((user) => (
-        <div key={user._id}>
-          <a onClick={() => goTo(user.username)}>{user.username}</a>
-        </div>
-      ))}
+      <div>
+        {users.map((user) => (
+          <div key={user._id}>
+            <button onClick={() => goTo(user.username)}>{user.username}</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

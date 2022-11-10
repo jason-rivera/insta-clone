@@ -7,13 +7,24 @@ import SingleUserPage from './pages/Users/SingleUser/SingleUserPage';
 import LoginPage from './pages/Login/LoginPage';
 import LoginSuccessPage from './pages/LoginSuccess/LoginSuccessPage';
 import LogoutPage from './pages/Logout/LogoutPage';
+import ProfilePage from './pages/Profile/ProfilePage';
 import { Link } from 'react-router-dom';
 import { UserContext } from './UserContext';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { logoutUser } from './util';
 
 function App() {
   const [user, setUser] = useState(null);
   const memoUser = useMemo(() => ({ user, setUser }), [user, setUser]);
+
+  useEffect(() => {
+    console.log(user, 'app.js');
+  });
+
+  const handleLogout = () => {
+    logoutUser();
+    setUser(null);
+  };
 
   return (
     <>
@@ -25,21 +36,34 @@ function App() {
           <li>
             <Link to='/about'>About</Link>
           </li>
-          <li>
-            <Link to='/register'>Register</Link>
-          </li>
-          <li>
-            <Link to='/users'>Users</Link>
-          </li>
+          {user && (
+            <>
+              <li>
+                <Link to='/users'>Users</Link>
+              </li>
+
+              <li>
+                <Link to='/profile'>Profile</Link>
+              </li>
+            </>
+          )}
           <br />
           {user ? (
             <li>
-              <Link to='/logout'>Logout</Link>
+              <Link to='/logout' onClick={() => handleLogout()}>
+                Logout
+              </Link>
             </li>
           ) : (
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>
+            <>
+              <li>
+                <Link to='/login'>Login</Link>
+              </li>
+
+              <li>
+                <Link to='/register'>Register</Link>
+              </li>
+            </>
           )}
         </ul>
       </nav>
@@ -54,6 +78,7 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/login/success' element={<LoginSuccessPage />} />
             <Route path='/logout' element={<LogoutPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
           </Routes>
         </UserContext.Provider>
       </div>

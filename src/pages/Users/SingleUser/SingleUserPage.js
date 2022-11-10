@@ -1,17 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../../config';
 import { getUserByUsername } from '../../../api/usersAPI';
+import { UserContext } from '../../../UserContext';
 
 const SingleUserPage = () => {
   const [singleUser, setSingleUser] = useState({});
+  const { user, setUser } = useContext(UserContext);
+  const [isCurrentUser, setIsCurrentUser] = useState(false);
   let username = useParams().username;
 
   useEffect(() => {
-    console.log(username);
+    if (username == '123') {
+      setIsCurrentUser(true);
+    } else {
+      setIsCurrentUser(false);
+    }
+    console.log(isCurrentUser, ': isCurrentUser');
     getUserByUsername(username).then((response) => setSingleUser(response));
-  }, []);
+  }, [isCurrentUser]);
 
   return (
     <div>

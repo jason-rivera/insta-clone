@@ -1,12 +1,15 @@
 import axios from 'axios';
 import { baseUrl } from '../../config';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../UserContext';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState([]);
+
+  const { user, setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -84,6 +87,20 @@ const LoginPage = () => {
       );
 
       if (response.status === 200) {
+        console.log(response.data.userToken[0]);
+
+        const user = {
+          id: response.data.userToken[0]._id,
+          username: response.data.userToken[0].username,
+          firstName: response.data.userToken[0].firstName,
+          lastName: response.data.userToken[0].lastName,
+          email: response.data.userToken[0].email,
+          password: response.data.userToken[0].password,
+          createdAt: response.data.userToken[0].createdAt,
+          updatedAt: response.data.userToken[0].updatedAt,
+        };
+
+        setUser(user);
         navigate('/login/success');
       }
     } catch (e) {

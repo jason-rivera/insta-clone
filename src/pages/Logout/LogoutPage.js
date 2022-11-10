@@ -1,16 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../UserContext';
-
-const removeLocalStorageTokens = () => {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('userToken');
-};
+import { logoutUser } from '../../util';
 
 const LogoutPage = () => {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    removeLocalStorageTokens();
     setUser(null);
   }, []);
 

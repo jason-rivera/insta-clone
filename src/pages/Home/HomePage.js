@@ -1,8 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useEffect, useContext } from 'react';
+import { UserContext } from '../../UserContext';
+
 const HomePage = () => {
   const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log(user, 'app.js');
+  });
 
   const handleViewUsersBtn = () => {
     navigate('/users');

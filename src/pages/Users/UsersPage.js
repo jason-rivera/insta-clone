@@ -8,12 +8,10 @@ const UsersPage = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    console.log('first effect');
     getAllUsers().then((response) => setUsers(response));
   }, []);
 
   const goTo = (username) => {
-    console.log('going to ' + username);
     navigate(`/users/${username}`);
   };
 

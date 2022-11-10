@@ -32,7 +32,7 @@ const RegisterPage = () => {
     );
 
     if (response.status === 200) {
-      navigate('/');
+      navigate('/register/success');
     }
   };
 

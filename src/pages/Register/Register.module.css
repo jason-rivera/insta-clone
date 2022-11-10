@@ -1,5 +1,44 @@
+*::before,
+*::after,
+* {
+  box-sizing: border-box;
+}
+
 .registerForm {
   display: flex;
   flex-direction: column;
   max-width: 40%;
+}
+
+.strengthMeter {
+  position: relative;
+  margin-top: 1rem;
+  height: 2rem;
+  width: 100%;
+  border: 3px solid lightgrey;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.strengthMeter::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: calc(1% * var(--strength, 0));
+  background-color: slategrey;
+  transition: width 200ms;
+}
+
+.inputField {
+  outline: none;
+  padding: 0.25rem 0.75rem;
+}
+
+.inputField:focus {
+  border-color: lightcoral;
+}
+
+.reasons {
+  margin-top: 0.5rem;
+  color: hsl(100, 77%, 80%);
 }

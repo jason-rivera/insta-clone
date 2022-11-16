@@ -10,7 +10,7 @@ const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [weaknesses, setWeaknesses] = useState({});
+  const [weaknesses, setWeaknesses] = useState([]);
 
   const navigate = useNavigate();
 
@@ -39,24 +39,20 @@ const RegisterPage = () => {
 
   const strengthMeter = document.getElementById('strengthMeter');
   const passwordInput = document.getElementById('passwordInput');
-  const reasonsContainer = document.getElementById('reasons');
 
-  const handleStrengthMeter = (password) => {
-    setWeaknesses(calculatePasswordStrength(password));
-    let strength = 100;
-
-    console.log(reasonsContainer);
-    reasonsContainer.innterHTML = ''; //not working
-
-    weaknesses.forEach((weakness) => {
-      strength -= weakness.deduction;
-
-      const messageElement = document.createElement('div');
-      messageElement.innerText = weakness.message;
-      reasonsContainer.appendChild(messageElement);
-    });
-
-    strengthMeter.style.setProperty('--strength', strength);
+  const handleStrengthMeter = async (password) => {
+    // const reasonsContainer = document.getElementById('reasons');
+    // reasonsContainer.innerHTML = '';
+    // await setWeaknesses(calculatePasswordStrength(password));
+    // let strength = 100;
+    // weaknesses.forEach((weakness) => {
+    //   console.log(weakness.deduction);
+    //   strength -= weakness.deduction;
+    //   const messageElement = document.createElement('div');
+    //   messageElement.innerText = weakness.message;
+    //   reasonsContainer.appendChild(messageElement);
+    // });
+    // strengthMeter.style.setProperty('--strength', strength);
   };
 
   const calculatePasswordStrength = (password) => {
@@ -73,14 +69,14 @@ const RegisterPage = () => {
   const lengthWeakness = (password) => {
     const length = password.length;
 
-    if (length <= 5) {
+    if (length <= 2) {
       return {
         message: 'Your password is too short',
         deduction: 40,
       };
     }
 
-    if (length <= 10) {
+    if (length <= 6) {
       return {
         message: 'Your password could be longer',
         deduction: 15,
@@ -187,12 +183,14 @@ const RegisterPage = () => {
           type='password'
           onChange={async (event) => {
             await setPassword(event.target.value);
-            handleStrengthMeter(event.target.value);
+            await handleStrengthMeter(event.target.value);
           }}
           aria-labelledby='password'
         />
         <div id='strengthMeter' className={styles.strengthMeter}></div>
-        <div id='reasons' className={styles.reasons}></div>
+        <div id='reasons' className={styles.reasons}>
+          asdf
+        </div>
         <br />
         <button onClick={(e) => handleSubmit(e)}>Register</button>
       </form>

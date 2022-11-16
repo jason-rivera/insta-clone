@@ -34,10 +34,16 @@ const HomePage = () => {
       <br />
       <br />
       <br />
-      <button onClick={() => handleLoginBtn()}>Login</button>
-      <br />
-      <br />
-      <button onClick={() => handleSignupBtn()}>Not A Member? Sign Up!</button>
+      {!user && (
+        <>
+          <button onClick={() => handleLoginBtn()}>Login</button>
+          <br />
+          <br />
+          <button onClick={() => handleSignupBtn()}>
+            Not A Member? Sign Up!
+          </button>
+        </>
+      )}
     </>
   );
 };

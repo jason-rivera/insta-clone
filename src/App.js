@@ -9,6 +9,8 @@ import LoginPage from './pages/Login/LoginPage';
 import LoginSuccessPage from './pages/LoginSuccess/LoginSuccessPage';
 import LogoutPage from './pages/Logout/LogoutPage';
 import ProfilePage from './pages/Profile/ProfilePage';
+import FeedPage from './pages/Feed/FeedPage';
+import TweetPage from './pages/Tweet/TweetPage';
 import NavBar from './components/NavBar';
 import { Link } from 'react-router-dom';
 import { UserContext } from './UserContext';
@@ -41,6 +43,8 @@ function App() {
             <Route path='/login/success' element={<LoginSuccessPage />} />
             <Route path='/logout' element={<LogoutPage />} />
             <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/feed' element={<FeedPage />} />
+            <Route path='/tweet' element={<TweetPage />} />
           </Routes>
         </div>
       </UserContext.Provider>

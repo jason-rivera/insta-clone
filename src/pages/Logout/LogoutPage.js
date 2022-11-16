@@ -6,6 +6,7 @@ const LogoutPage = () => {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
+    logoutUser();
     setUser(null);
   }, []);
 

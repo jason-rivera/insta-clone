@@ -12,8 +12,17 @@ export const getAllUsers = async () => {
 };
 
 export const getUserByUsername = async (username) => {
-  let response = await axios.get(baseUrl + `/users/${username}`);
+  let response = await axios.get(baseUrl + `/users/username/${username}`);
   return response.data[0];
+};
+
+export const getUserById = async (id) => {
+  let response = await axios.get(baseUrl + `/users/id/${id}`);
+  if (response.status === 200) {
+    return response.data[0];
+  } else {
+    console.log(response);
+  }
 };
 
 export const register = async (

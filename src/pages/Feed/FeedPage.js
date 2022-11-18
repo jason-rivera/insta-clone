@@ -24,7 +24,7 @@ const FeedPage = () => {
 
   const getAllTweets = async () => {
     const response = await axios.get(baseUrl + '/tweets');
-    setTweets(response.data);
+    setTweets(response.data.reverse());
     console.log(response, 'all tweets');
   };
 
@@ -36,7 +36,7 @@ const FeedPage = () => {
       <br />
       <br />
       {tweets.map((tweet) => (
-        <div className={styles.tweet}>
+        <div key={tweet._id} className={styles.tweet}>
           {tweet.tweet}
           <br />
           <div className={styles.postedBy}>

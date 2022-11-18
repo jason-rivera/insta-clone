@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState, useRef } from 'react';
 import { getUserById } from '../../api/usersAPI';
 import { UserContext } from '../../UserContext';
 import { baseUrl } from '../../config';
@@ -9,6 +9,10 @@ export const ProfileEditPage = () => {
   const { user, setUser } = useContext(UserContext);
 
   const [userToEdit, setUserToEdit] = useState({});
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     handleGetUserById();
@@ -17,33 +21,86 @@ export const ProfileEditPage = () => {
   const handleGetUserById = async () => {
     const response = await getUserById(user.id);
     setUserToEdit(response);
+    setFirstName(response.firstName);
+    setLastName(response.lastName);
+    setUsername(response.username);
+    setEmail(response.email);
   };
 
   const handleProfileUpdate = async () => {
-    console.log('handle the profile update button');
+    document.getElementById('update-success-msg').innerHTML = '';
+
     const response = await axios.patch(baseUrl + '/profile/update', {
       id: userToEdit._id,
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      email: email,
     });
-    console.log(response);
+    console.log(response, 'from ehre');
+
+    //updating the UserContext
+    const updatedUser = {
+      id: response.data[0]._id,
+      username: response.data[0].username,
+      firstName: response.data[0].firstName,
+      lastName: response.data[0].lastName,
+      email: response.data[0].email,
+      password: response.data[0].password,
+      createdAt: response.data[0].createdAt,
+      updatedAt: response.data[0].updatedAt,
+    };
+    setUser(updatedUser);
+
+    document.getElementById('update-success-msg').innerHTML =
+      'Your Profile has been updated';
   };
 
   return (
     <div>
       <h1>Edit Profile</h1>
       <p>This is the edit profile page</p>
-      First Name: <input type='text' value={userToEdit.firstName} />
+      Username:{' '}
+      <input
+        id='username-input'
+        type='text'
+        defaultValue={userToEdit.username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
       <br />
-      Last Name: <input type='text' value={userToEdit.lastName} />
+      First Name:{' '}
+      <input
+        id='first-name-input'
+        type='text'
+        defaultValue={userToEdit.firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+      />
       <br />
-      Username: <input type='text' value={userToEdit.username} />
+      Last Name:{' '}
+      <input
+        id='last-name-input'
+        type='text'
+        defaultValue={userToEdit.lastName}
+        onChange={(e) => setLastName(e.target.value)}
+      />
       <br />
-      Email: <input type='text' value={userToEdit.email} />
+      Email:{' '}
+      <input
+        id='email-input'
+        type='text'
+        defaultValue={userToEdit.email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
       <br />
       <button>Change Password</button>
       <br />
       <br />
       <br />
       <button onClick={() => handleProfileUpdate()}>Update Profile</button>
+      <br />
+      <br />
+      <br />
+      <div id='update-success-msg'></div>
     </div>
   );
 };

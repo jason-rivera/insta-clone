@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../../UserContext';
 import axios from 'axios';
 import { baseUrl } from '../../config';

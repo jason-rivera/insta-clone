@@ -12,9 +12,7 @@ const NavBar = () => {
     setUser(null);
   };
 
-  useEffect(() => {
-    console.log(user, 'app.js');
-  });
+  useEffect(() => {}, []);
 
   return (
     <nav>

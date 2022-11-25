@@ -14,7 +14,7 @@ import FeedPage from './pages/Feed/FeedPage';
 import TweetPage from './pages/Tweet/TweetPage';
 import NavBar from './components/NavBar';
 import { Link } from 'react-router-dom';
-import { UserContext } from './UserContext';
+import { UserContext, setUserContextFromLocalStorage } from './UserContext';
 import { useState, useMemo, useEffect } from 'react';
 import { logoutUser } from './util';
 import './App.css';
@@ -24,8 +24,8 @@ function App() {
   const memoUser = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   useEffect(() => {
-    console.log(user, 'app.js');
-  });
+    setUser(setUserContextFromLocalStorage());
+  }, []);
 
   return (
     <>

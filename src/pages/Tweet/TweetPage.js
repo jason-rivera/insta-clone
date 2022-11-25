@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { baseUrl } from '../../config';
 import { useState, useEffect, useContext } from 'react';
-import { UserContext } from '../../UserContext';
+import { UserContext, setUserContextFromLocalStorage } from '../../UserContext';
 
 const TweetPage = () => {
   const [tweet, setTweet] = useState('');
@@ -30,8 +30,7 @@ const TweetPage = () => {
   };
 
   useEffect(() => {
-    console.log(tweet);
-    console.log(user.username);
+    setUser(setUserContextFromLocalStorage());
   }, [tweet]);
 
   return (

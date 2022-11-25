@@ -8,9 +8,7 @@ const HomePage = () => {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log(user, 'app.js');
-  });
+  useEffect(() => {}, []);
 
   const handleViewUsersBtn = () => {
     navigate('/users');

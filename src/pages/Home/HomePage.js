@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useEffect, useContext } from 'react';
-import { UserContext } from '../../UserContext';
+// import { useEffect, useContext } from 'react';
+// import { UserContext } from '../../UserContext';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   const handleViewUsersBtn = () => {
     navigate('/users');
@@ -32,7 +32,7 @@ const HomePage = () => {
       <br />
       <br />
       <br />
-      {!user && (
+      {/* {!user && (
         <>
           <button onClick={() => handleLoginBtn()}>Login</button>
           <br />
@@ -41,7 +41,7 @@ const HomePage = () => {
             Not A Member? Sign Up!
           </button>
         </>
-      )}
+      )} */}
     </>
   );
 };

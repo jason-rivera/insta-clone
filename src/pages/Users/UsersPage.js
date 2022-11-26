@@ -20,11 +20,18 @@ const UsersPage = () => {
       <h1>Users</h1>
       <h2>Here is a list of users:</h2>
       <div>
-        {users.map((user) => (
-          <div key={user._id}>
-            <button onClick={() => goTo(user.username)}>{user.username}</button>
-          </div>
-        ))}
+        {users?.length ? (
+          users?.map((user, index) => (
+            <div key={user._id}>
+              Index #{index}.{' '}
+              <button onClick={() => goTo(user.username)}>
+                {user.username}
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>No users to display</p>
+        )}
       </div>
     </div>
   );

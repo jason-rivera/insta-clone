@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { baseUrl } from '../../config';
 import { useState, useEffect, useContext } from 'react';
-import { UserContext, setUserContextFromLocalStorage } from '../../UserContext';
+// import { UserContext, setUserContextFromLocalStorage } from '../../UserContext';
 
 const TweetPage = () => {
   const [tweet, setTweet] = useState('');
-  const { user, setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
 
   const handleTweetSubmit = async (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ const TweetPage = () => {
     console.log(tweet);
     let response = await axios.post(baseUrl + '/tweet', {
       tweet: tweet,
-      username: user.username,
+      // username: user.username,
     });
 
     console.log(response.status);
@@ -30,7 +30,7 @@ const TweetPage = () => {
   };
 
   useEffect(() => {
-    setUser(setUserContextFromLocalStorage());
+    // setUser(setUserContextFromLocalStorage());
   }, [tweet]);
 
   return (

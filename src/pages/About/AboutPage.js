@@ -1,10 +1,4 @@
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../../UserContext';
-
 const AboutPage = () => {
-  const { user, setUser } = useContext(UserContext);
-
   return (
     <div>
       <h1>About</h1>

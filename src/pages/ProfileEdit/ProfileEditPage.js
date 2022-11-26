@@ -2,11 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { useEffect, useContext, useState, useRef } from 'react';
 import { getUserById } from '../../api/usersAPI';
-import { UserContext } from '../../UserContext';
+// import { UserContext } from '../../UserContext';
 import { baseUrl } from '../../config';
 
 export const ProfileEditPage = () => {
-  const { user, setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
 
   const [userToEdit, setUserToEdit] = useState({});
   const [firstName, setFirstName] = useState('');
@@ -19,12 +19,12 @@ export const ProfileEditPage = () => {
   }, []);
 
   const handleGetUserById = async () => {
-    const response = await getUserById(user.id);
-    setUserToEdit(response);
-    setFirstName(response.firstName);
-    setLastName(response.lastName);
-    setUsername(response.username);
-    setEmail(response.email);
+    // const response = await getUserById(user.id);
+    // setUserToEdit(response);
+    // setFirstName(response.firstName);
+    // setLastName(response.lastName);
+    // setUsername(response.username);
+    // setEmail(response.email);
   };
 
   const handleProfileUpdate = async () => {
@@ -38,19 +38,6 @@ export const ProfileEditPage = () => {
       email: email,
     });
     console.log(response, 'from ehre');
-
-    //updating the UserContext
-    const updatedUser = {
-      id: response.data[0]._id,
-      username: response.data[0].username,
-      firstName: response.data[0].firstName,
-      lastName: response.data[0].lastName,
-      email: response.data[0].email,
-      password: response.data[0].password,
-      createdAt: response.data[0].createdAt,
-      updatedAt: response.data[0].updatedAt,
-    };
-    setUser(updatedUser);
 
     document.getElementById('update-success-msg').innerHTML =
       'Your Profile has been updated';

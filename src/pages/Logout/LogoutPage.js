@@ -1,13 +1,13 @@
 import { useContext, useEffect } from 'react';
-import { UserContext } from '../../UserContext';
+// import { UserContext } from '../../UserContext';
 import { logoutUser } from '../../util';
 
 const LogoutPage = () => {
-  const { user, setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     logoutUser();
-    setUser(null);
+    // setUser(null);
   }, []);
 
   return (

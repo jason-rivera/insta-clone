@@ -2,24 +2,22 @@ import axios from 'axios';
 import { baseUrl } from '../../config';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../UserContext';
+// import { UserContext } from '../../UserContext';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState([]);
 
-  const { user, setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   console.log(username);
-  //   console.log(password);
-  // }, [username, password]);
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
-  const getAllUsers = async (e) => {
-    e.preventDefault();
+  const getAllUsers = async () => {
     try {
       await axios.get(baseUrl + '/get-all-users').then((response) => {
         console.log(response.data);
@@ -100,7 +98,7 @@ const LoginPage = () => {
           updatedAt: response.data.userToken[0].updatedAt,
         };
 
-        setUser(user);
+        // setUser(user);
         navigate('/login/success');
       }
     } catch (e) {
@@ -140,9 +138,12 @@ const LoginPage = () => {
       <div id='error-message'></div>
       <br />
       <br />
-      {users.map((user) => (
-        <p key={user._id}>{user.username}</p>
-      ))}
+      {users?.length ? (
+        users.map((user) => <p key={user._id}>{user.username}</p>)
+      ) : (
+        <p>No Users to display. Try clicking the Get-All-Users button</p>
+      )}
+
       <br />
       <br />
       <br />
@@ -156,7 +157,6 @@ const LoginPage = () => {
       <button onClick={(e) => getOwnData(e)}>Test-get-own-data</button>
       <br />
       <br />
-      <button onClick={(e) => getAllUsers(e)}>Test-get-all-Users</button>
       <br />
       <br />
       <button onClick={(e) => deleteAll(e)}>Test-deleteAll</button>

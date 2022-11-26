@@ -1,14 +1,14 @@
 import { useContext, useEffect } from 'react';
-import { UserContext, setUserContextFromLocalStorage } from '../../UserContext';
+// import { UserContext, setUserContextFromLocalStorage } from '../../UserContext';
 import axios from 'axios';
 import { baseUrl } from '../../config';
 import { Link } from 'react-router-dom';
 
 const ProfilePage = () => {
-  const { user, setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    setUser(setUserContextFromLocalStorage());
+    // setUser(setUserContextFromLocalStorage());
     // Problem: The HTML is being rendered before this setUser() function starts.
     // console.log(user);
   }, []);
@@ -28,15 +28,15 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <h1>{user.username}'s Profile Page</h1>
+      {/* <h1>{user.username}'s Profile Page</h1> */}
       <p>View Count: XXX</p>
       <p>This is your profile page</p>
 
-      {/* <div>Username: {user.username}</div> */}
-      {/* <div>First Name: {user.firstName}</div> */}
-      {/* <div>Last Name: {user.lastName}</div> */}
-      {/* <div>Email: {user.email}</div> */}
-      {/* <div>Password: {user.password}</div> */}
+      {/* <div>Username: {user.username}</div>
+      <div>First Name: {user.firstName}</div>
+      <div>Last Name: {user.lastName}</div>
+      <div>Email: {user.email}</div>
+      <div>Password: {user.password}</div> */}
       <br />
       <Link to='/profile/edit'>
         <button>Edit Profile</button>

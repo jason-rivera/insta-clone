@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../../config';
 import { getUserByUsername } from '../../../api/usersAPI';
-import { UserContext } from '../../../UserContext';
+// import { UserContext } from '../../../UserContext';
 
 const SingleUserPage = () => {
   const [singleUser, setSingleUser] = useState({});
-  const { user, setUser } = useContext(UserContext);
+  // const { user, setUser } = useContext(UserContext);
   const [isCurrentUser, setIsCurrentUser] = useState(false);
   let username = useParams().username;
 

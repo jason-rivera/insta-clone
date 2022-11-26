@@ -14,42 +14,36 @@ import FeedPage from './pages/Feed/FeedPage';
 import TweetPage from './pages/Tweet/TweetPage';
 import NavBar from './components/NavBar';
 import { Link } from 'react-router-dom';
-import { UserContext, setUserContextFromLocalStorage } from './UserContext';
 import { useState, useMemo, useEffect } from 'react';
 import { logoutUser } from './util';
 import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
-  const memoUser = useMemo(() => ({ user, setUser }), [user, setUser]);
 
-  useEffect(() => {
-    setUser(setUserContextFromLocalStorage());
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>
-      <UserContext.Provider value={memoUser}>
-        <NavBar />
-        {user && `Logged in as: ${user.username}`}
-        <div className='content-container'>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/about' element={<AboutPage />} />
-            <Route path='/register' element={<RegisterPage />} />
-            <Route path='/register/success' element={<RegisterSuccessPage />} />
-            <Route path='/users' element={<UsersPage />} />
-            <Route path='/users/:username' element={<SingleUserPage />} />
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/login/success' element={<LoginSuccessPage />} />
-            <Route path='/logout' element={<LogoutPage />} />
-            <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/profile/edit' element={<ProfileEditPage />} />
-            <Route path='/feed' element={<FeedPage />} />
-            <Route path='/tweet' element={<TweetPage />} />
-          </Routes>
-        </div>
-      </UserContext.Provider>
+      <NavBar />
+      {/* {user && `Logged in as: ${user.username}`} */}
+      <div className='content-container'>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/register/success' element={<RegisterSuccessPage />} />
+          <Route path='/users' element={<UsersPage />} />
+          <Route path='/users/:username' element={<SingleUserPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/login/success' element={<LoginSuccessPage />} />
+          <Route path='/logout' element={<LogoutPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/profile/edit' element={<ProfileEditPage />} />
+          <Route path='/feed' element={<FeedPage />} />
+          <Route path='/tweet' element={<TweetPage />} />
+        </Routes>
+      </div>
     </>
   );
 }

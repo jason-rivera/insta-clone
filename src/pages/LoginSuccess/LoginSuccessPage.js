@@ -1,17 +1,40 @@
 import { Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-// import { UserContext } from '../../UserContext';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { baseUrl } from '../../config';
 
 const LoginSuccessPage = () => {
-  // const { user, setUser } = useContext(UserContext);
+  const [user, setUser] = useState('');
 
   useEffect(() => {
-    // console.log(user, 'loginSuccessPage.js');
-  });
+    getUsername();
+  }, []);
+
+  const getUsername = async () => {
+    console.log(localStorage.getItem('accessToken'), 'login success page');
+    const response = await axios.post(
+      baseUrl + '/get-own-data',
+      {
+        accessToken: localStorage.getItem('accessToken'),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+        // withCredentials: true,
+        // credentials: 'include',
+      }
+    );
+
+    setUser(response.data[0]);
+
+    console.log(response);
+  };
+
   return (
     <div>
       <h1>Login Success Page</h1>
-      {/* <h2>Hello {user.username}, You have successfully logged in!</h2> */}
+      <h2>Hello {user.username}, You have successfully logged in!</h2>
     </div>
   );
 };

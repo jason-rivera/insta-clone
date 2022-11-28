@@ -2,14 +2,11 @@ import axios from 'axios';
 import { baseUrl } from '../../config';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { UserContext } from '../../UserContext';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState([]);
-
-  // const { user, setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -68,43 +65,22 @@ const LoginPage = () => {
     e.preventDefault();
     document.getElementById('error-message').innerHTML = '';
 
-    console.log('login button clicked');
     try {
       const response = await axios.post(baseUrl + '/users/login', {
         username: username,
         password: password,
       });
-      console.log('sent login credentials', username, password);
-      console.log(response, 'the response from login endpoint');
-
-      console.log(response.data.accessToken, 'hello world');
-      localStorage.setItem('accessToken', response.data.accessToken);
-      localStorage.setItem(
-        'userToken',
-        JSON.stringify(response.data.userToken)
-      );
 
       if (response.status === 200) {
-        console.log(response.data.userToken[0]);
-
-        const user = {
-          id: response.data.userToken[0]._id,
-          username: response.data.userToken[0].username,
-          firstName: response.data.userToken[0].firstName,
-          lastName: response.data.userToken[0].lastName,
-          email: response.data.userToken[0].email,
-          password: response.data.userToken[0].password,
-          createdAt: response.data.userToken[0].createdAt,
-          updatedAt: response.data.userToken[0].updatedAt,
-        };
-
-        // setUser(user);
+        localStorage.setItem('accessToken', response.data.accessToken);
         navigate('/login/success');
       }
     } catch (e) {
       if (e.response.status === 401) {
         document.getElementById('error-message').innerHTML =
           'Incorrect username or password!';
+      } else {
+        console.error(e.response.data);
       }
     }
   };
@@ -132,18 +108,17 @@ const LoginPage = () => {
         <br />
         <button onClick={(e) => login(e)}>Login</button>
       </form>
-
       <br />
       <br />
       <div id='error-message'></div>
       <br />
+      Users:
       <br />
       {users?.length ? (
         users.map((user) => <p key={user._id}>{user.username}</p>)
       ) : (
         <p>No Users to display. Try clicking the Get-All-Users button</p>
       )}
-
       <br />
       <br />
       <br />

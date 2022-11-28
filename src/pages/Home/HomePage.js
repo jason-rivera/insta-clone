@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../config';
+import axios from 'axios';
 
 // import { useEffect, useContext } from 'react';
 // import { UserContext } from '../../UserContext';
@@ -18,6 +20,15 @@ const HomePage = () => {
   };
   const handleSignupBtn = () => {
     navigate('/register');
+  };
+
+  const setCookie = async () => {
+    // console.log('set cookie test');
+    // const response = await axios.get(baseUrl + '/setCookie');
+    // console.log(response);
+
+    document.cookie = 'TEST=1; expires=Tue, 14 Oct 2014 20:23:32 GMT; path=/';
+    console.log(document.cookie);
   };
 
   return (
@@ -42,6 +53,16 @@ const HomePage = () => {
           </button>
         </>
       )} */}
+
+      <br />
+      <br />
+      <button
+        onClick={() => {
+          setCookie();
+        }}
+      >
+        set cookie
+      </button>
     </>
   );
 };

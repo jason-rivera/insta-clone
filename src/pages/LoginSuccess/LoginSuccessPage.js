@@ -13,7 +13,7 @@ const LoginSuccessPage = () => {
   const getUsername = async () => {
     console.log(localStorage.getItem('accessToken'), 'login success page');
     const response = await axios.post(
-      baseUrl + '/get-own-data',
+      baseUrl + '/users/get-own-data',
       {
         accessToken: localStorage.getItem('accessToken'),
       },
@@ -27,12 +27,11 @@ const LoginSuccessPage = () => {
     );
 
     setUser(response.data[0]);
-
     console.log(response);
   };
 
   const getAllUsers = async () => {
-    const response = await axios.get(baseUrl + '/get-all-users', {
+    const response = await axios.get(baseUrl + '/users/get-all-users', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },

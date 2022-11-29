@@ -13,7 +13,7 @@ const TweetPage = () => {
 
     console.log(tweet);
     let response = await axios.post(
-      baseUrl + '/tweet',
+      baseUrl + '/tweets/tweet',
       {
         tweet: tweet,
         username: localStorage.getItem('userToken'),

@@ -1,13 +1,18 @@
 import axios from 'axios';
 import { baseUrl } from '../config';
 
+const ENDPOINT_PREFIX = '/users';
+
 export const getAllUsers = async () => {
   try {
-    let response = await axios.get(baseUrl + '/get-all-users', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      },
-    });
+    let response = await axios.get(
+      baseUrl + ENDPOINT_PREFIX + '/get-all-users',
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      }
+    );
     // console.log(response.data, 'from usersAPI');
     return response.data;
   } catch (e) {
@@ -16,16 +21,19 @@ export const getAllUsers = async () => {
 };
 
 export const getUserByUsername = async (username) => {
-  let response = await axios.get(baseUrl + `/users/username/${username}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-    },
-  });
+  let response = await axios.get(
+    baseUrl + ENDPOINT_PREFIX + `/username/${username}`,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    }
+  );
   return response.data[0];
 };
 
 export const getUserById = async (id) => {
-  let response = await axios.get(baseUrl + `/users/id/${id}`, {
+  let response = await axios.get(baseUrl + ENDPOINT_PREFIX + `/id/${id}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     },
@@ -37,6 +45,7 @@ export const getUserById = async (id) => {
   }
 };
 
+//maybe move this one into it's own registerAPI.js
 export const register = async (
   firstName,
   lastName,
@@ -46,7 +55,7 @@ export const register = async (
 ) => {
   try {
     let response = await axios.post(
-      baseUrl + '/register',
+      baseUrl + '/register/new',
       {
         firstName: firstName,
         lastName: lastName,

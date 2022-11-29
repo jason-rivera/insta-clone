@@ -12,7 +12,7 @@ const FeedPage = () => {
 
   const deleteAllTweets = async () => {
     console.log('got here');
-    const response = await axios.delete(baseUrl + '/tweet/delete-all', {
+    const response = await axios.delete(baseUrl + '/tweets/delete-all', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },
@@ -27,7 +27,7 @@ const FeedPage = () => {
   };
 
   const getAllTweets = async () => {
-    const response = await axios.get(baseUrl + '/tweets', {
+    const response = await axios.get(baseUrl + '/tweets/tweets', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       },

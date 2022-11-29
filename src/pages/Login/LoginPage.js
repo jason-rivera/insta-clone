@@ -11,12 +11,12 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllUsers();
+    // getAllUsers();
   }, []);
 
   const getAllUsers = async () => {
     try {
-      await axios.get(baseUrl + '/get-all-users').then((response) => {
+      await axios.get(baseUrl + '/api/v1/get-all-users').then((response) => {
         console.log(response.data);
         setUsers(response.data);
       });
@@ -52,7 +52,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await axios
-        .delete(baseUrl + '/delete-all-users')
+        .delete(baseUrl + '/api/v1/delete-all-users')
         .then((response) => {
           console.log(response);
         });
@@ -66,7 +66,7 @@ const LoginPage = () => {
     document.getElementById('error-message').innerHTML = '';
 
     try {
-      const response = await axios.post(baseUrl + '/users/login', {
+      const response = await axios.post(baseUrl + '/auth/login', {
         username: username,
         password: password,
       });
@@ -131,12 +131,12 @@ const LoginPage = () => {
       <br />
       <br />
       <br />
-      <button onClick={(e) => getOwnData(e)}>Test-get-own-data</button>
+      {/* <button onClick={(e) => getOwnData(e)}>Test-get-own-data</button> */}
       <br />
       <br />
       <br />
       <br />
-      <button onClick={(e) => deleteAll(e)}>Test-deleteAll</button>
+      {/* <button onClick={(e) => deleteAll(e)}>Test-deleteAll</button> */}
     </div>
   );
 };

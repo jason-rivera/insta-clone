@@ -7,7 +7,7 @@ import UsersPage from './pages/Users/UsersPage';
 import SingleUserPage from './pages/Users/SingleUser/SingleUserPage';
 import LoginPage from './pages/Login/LoginPage';
 import LoginSuccessPage from './pages/LoginSuccess/LoginSuccessPage';
-import LogoutPage from './pages/Logout/LogoutPage';
+import LogoutSuccessPage from './pages/LogoutSuccess/LogoutSuccessPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 import { ProfileEditPage } from './pages/ProfileEdit/ProfileEditPage';
 import FeedPage from './pages/Feed/FeedPage';
@@ -30,7 +30,7 @@ function App() {
           <Route path='/users/:username' element={<SingleUserPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/login/success' element={<LoginSuccessPage />} />
-          <Route path='/logout' element={<LogoutPage />} />
+          <Route path='/logout' element={<LogoutSuccessPage />} />
           <Route path='/profile' element={<ProfilePage />} />
           <Route path='/profile/edit' element={<ProfileEditPage />} />
           <Route path='/feed' element={<FeedPage />} />

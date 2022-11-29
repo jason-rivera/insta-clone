@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { removeUserFromLocalStorage } from '../../util';
 
-const LogoutPage = () => {
+const LogoutSuccessPage = () => {
   useEffect(() => {
     removeUserFromLocalStorage();
   }, []);
@@ -14,4 +14,4 @@ const LogoutPage = () => {
   );
 };
 
-export default LogoutPage;
+export default LogoutSuccessPage;

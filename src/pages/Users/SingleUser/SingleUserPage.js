@@ -12,7 +12,7 @@ const SingleUserPage = () => {
   let username = useParams().username;
 
   useEffect(() => {
-    if (username == '123') {
+    if (username == localStorage.getItem('userToken')) {
       setIsCurrentUser(true);
     } else {
       setIsCurrentUser(false);

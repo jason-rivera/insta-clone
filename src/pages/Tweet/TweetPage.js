@@ -12,10 +12,18 @@ const TweetPage = () => {
     console.log('handle tweet submit clicked');
 
     console.log(tweet);
-    let response = await axios.post(baseUrl + '/tweet', {
-      tweet: tweet,
-      // username: user.username,
-    });
+    let response = await axios.post(
+      baseUrl + '/tweet',
+      {
+        tweet: tweet,
+        username: localStorage.getItem('userToken'),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      }
+    );
 
     console.log(response.status);
     console.log(response.data.tweet);

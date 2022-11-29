@@ -3,7 +3,11 @@ import { baseUrl } from '../config';
 
 export const getAllUsers = async () => {
   try {
-    let response = await axios.get(baseUrl + '/get-all-users');
+    let response = await axios.get(baseUrl + '/get-all-users', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    });
     // console.log(response.data, 'from usersAPI');
     return response.data;
   } catch (e) {
@@ -12,12 +16,20 @@ export const getAllUsers = async () => {
 };
 
 export const getUserByUsername = async (username) => {
-  let response = await axios.get(baseUrl + `/users/username/${username}`);
+  let response = await axios.get(baseUrl + `/users/username/${username}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
   return response.data[0];
 };
 
 export const getUserById = async (id) => {
-  let response = await axios.get(baseUrl + `/users/id/${id}`);
+  let response = await axios.get(baseUrl + `/users/id/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
   if (response.status === 200) {
     return response.data[0];
   } else {
@@ -33,13 +45,21 @@ export const register = async (
   password
 ) => {
   try {
-    let response = await axios.post(baseUrl + '/register', {
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      email: email,
-      password: password,
-    });
+    let response = await axios.post(
+      baseUrl + '/register',
+      {
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        email: email,
+        password: password,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+        },
+      }
+    );
     return response;
   } catch (e) {
     return e;

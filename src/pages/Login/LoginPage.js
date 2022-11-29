@@ -72,7 +72,9 @@ const LoginPage = () => {
       });
 
       if (response.status === 200) {
+        console.log(response.data, 'response check here now');
         localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem('userToken', response.data.userToken);
         navigate('/login/success');
       }
     } catch (e) {

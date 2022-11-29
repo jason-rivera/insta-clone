@@ -1,4 +1,4 @@
-export const logoutUser = () => {
+export const removeUserFromLocalStorage = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('userToken');
 };

@@ -1,12 +1,11 @@
-import { useContext, useEffect } from 'react';
-
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../util';
+import { removeUserFromLocalStorage } from '../util';
 import styles from './NavBar.module.css';
 
 const NavBar = () => {
   const handleLogout = () => {
-    logoutUser();
+    removeUserFromLocalStorage();
   };
 
   useEffect(() => {}, []);
@@ -21,8 +20,7 @@ const NavBar = () => {
           <li>
             <Link to='/about'>About</Link>
           </li>
-          {/* {user && (
-            <> */}
+
           <li>
             <Link to='/users'>Users</Link>
           </li>
@@ -35,17 +33,14 @@ const NavBar = () => {
           <li>
             <Link to='/tweet'>Tweet</Link>
           </li>
-          {/* </>
-          )} */}
         </div>
         <div className={styles.navSection}>
-          {/* {user ? ( */}
           <li>
             <Link to='/logout' onClick={() => handleLogout()}>
               Logout
             </Link>
           </li>
-          {/* ) : ( */}
+
           <>
             <li>
               <Link to='/login'>Login</Link>
@@ -55,7 +50,6 @@ const NavBar = () => {
               <Link to='/register'>Register</Link>
             </li>
           </>
-          {/* )} */}
         </div>
       </ul>
     </nav>

@@ -13,16 +13,9 @@ import { ProfileEditPage } from './pages/ProfileEdit/ProfileEditPage';
 import FeedPage from './pages/Feed/FeedPage';
 import TweetPage from './pages/Tweet/TweetPage';
 import NavBar from './components/NavBar';
-import { Link } from 'react-router-dom';
-import { useState, useMemo, useEffect } from 'react';
-import { logoutUser } from './util';
 import './App.css';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {}, []);
-
   return (
     <>
       <NavBar />

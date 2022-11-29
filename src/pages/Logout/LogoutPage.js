@@ -1,13 +1,9 @@
 import { useContext, useEffect } from 'react';
-// import { UserContext } from '../../UserContext';
-import { logoutUser } from '../../util';
+import { removeUserFromLocalStorage } from '../../util';
 
 const LogoutPage = () => {
-  // const { user, setUser } = useContext(UserContext);
-
   useEffect(() => {
-    logoutUser();
-    // setUser(null);
+    removeUserFromLocalStorage();
   }, []);
 
   return (

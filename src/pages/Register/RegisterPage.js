@@ -135,6 +135,16 @@ const RegisterPage = () => {
       <h1>Register</h1>
       <h2>This is the register page</h2>
       <form className={styles.registerForm}>
+        <label htmlFor='username'>Username</label>
+        <input
+          id='username'
+          className={styles.inputField}
+          type='text'
+          onChange={async (event) => {
+            await setUsername(event.target.value);
+          }}
+          aria-labelledby='username'
+        />
         <label htmlFor='firstName'>First Name</label>
         <input
           id='firstName'
@@ -155,16 +165,6 @@ const RegisterPage = () => {
             await setLastName(event.target.value);
           }}
           aria-labelledby='last name'
-        />
-        <label htmlFor='username'>Username</label>
-        <input
-          id='username'
-          className={styles.inputField}
-          type='text'
-          onChange={async (event) => {
-            await setUsername(event.target.value);
-          }}
-          aria-labelledby='username'
         />
         <label htmlFor='email'>Email</label>
         <input

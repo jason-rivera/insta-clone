@@ -2,39 +2,31 @@ import axios from 'axios';
 import { baseUrl } from '../../config';
 import { useEffect, useState } from 'react';
 import styles from './FeedPage.module.css';
+import { getAllTweets, deleteAllTweets } from '../../api/tweetsAPI';
 
 const FeedPage = () => {
   const [tweets, setTweets] = useState([]);
 
-  useEffect(() => {
-    getAllTweets();
-  }, []);
+  const handleGetAllTweets = async () => {
+    const response = await getAllTweets();
+    setTweets(response.data);
+  };
 
-  const deleteAllTweets = async () => {
-    console.log('got here');
-    const response = await axios.delete(baseUrl + '/tweets/delete-all', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      },
-    });
-    console.log(response, 'response');
+  const handleDeleteAllTweets = async () => {
+    const response = await deleteAllTweets();
     if (response.status === 200) {
-      getAllTweets();
+      handleGetAllTweets();
+      document.getElementById('delete-error-msg').innerHTML =
+        'Deleted all tweets';
     } else {
       document.getElementById('delete-error-msg').innerHTML =
         'something went wrong';
     }
   };
 
-  const getAllTweets = async () => {
-    const response = await axios.get(baseUrl + '/tweets/tweets', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      },
-    });
-    setTweets(response.data.reverse());
-    console.log(response, 'all tweets');
-  };
+  useEffect(() => {
+    handleGetAllTweets();
+  }, []);
 
   return (
     <div>
@@ -43,23 +35,33 @@ const FeedPage = () => {
       <br />
       <br />
       <br />
-      {tweets.map((tweet) => (
-        <div key={tweet._id} className={styles.tweet}>
-          {tweet.tweet}
-          <br />
-          <div className={styles.postedBy}>
-            posted by {tweet.username} [{tweet.createdAt}]
+      {tweets.length ? (
+        tweets.reverse().map((tweet) => (
+          <div key={tweet._id} className={styles.tweet}>
+            {tweet.tweet}
+            <br />
+            <div className={styles.postedBy}>
+              posted by {tweet.username} [{tweet.createdAt}]
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      ) : (
+        <p>No tweets found in the database</p>
+      )}
+
+      <br />
+      <br />
+      <br />
+      <br />
 
       <button
         onClick={() => {
-          deleteAllTweets();
+          handleDeleteAllTweets();
         }}
       >
         Delete All Tweets
       </button>
+      <br />
       <br />
       <div id='delete-error-msg'></div>
     </div>

@@ -2,13 +2,36 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { removeUserFromLocalStorage } from '../util';
 import styles from './NavBar.module.css';
+import { verifyCurrentUser } from '../api/verifyAPI';
 
 const NavBar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const handleLogout = () => {
+    handleIsLoggedIn();
     removeUserFromLocalStorage();
   };
 
-  useEffect(() => {}, []);
+  const handleIsLoggedIn = async () => {
+    try {
+      const response = await verifyCurrentUser();
+      if (response.status === 200) {
+        setIsLoggedIn(true);
+        console.log(isLoggedIn, '= isloggedin?');
+      } else {
+        setIsLoggedIn(false);
+        console.log(isLoggedIn, '= isloggedin?');
+      }
+    } catch (e) {
+      console.log(e, 'error for checking logged in user');
+      setIsLoggedIn(false);
+      console.log(isLoggedIn, '= isloggedin?');
+    }
+  };
+
+  useEffect(() => {
+    handleIsLoggedIn();
+  }, [isLoggedIn, setIsLoggedIn]);
 
   return (
     <nav>
@@ -20,28 +43,34 @@ const NavBar = () => {
           <li>
             <Link to='/about'>About</Link>
           </li>
-          <>
-            <li>
-              <Link to='/users'>Users</Link>
-            </li>
-            <li>
-              <Link to='/profile'>Profile</Link>
-            </li>
-            <li>
-              <Link to='/feed'>Feed</Link>
-            </li>
-            <li>
-              <Link to='/tweet'>Tweet</Link>
-            </li>
-          </>
+          <li>
+            <button onClick={() => handleIsLoggedIn()}>verify</button>
+          </li>
+          {isLoggedIn && (
+            <>
+              <li>
+                <Link to='/users'>Users</Link>
+              </li>
+              <li>
+                <Link to='/profile'>Profile</Link>
+              </li>
+              <li>
+                <Link to='/feed'>Feed</Link>
+              </li>
+              <li>
+                <Link to='/tweet'>Tweet</Link>
+              </li>
+            </>
+          )}
         </div>
         <div className={styles.navSection}>
+          {/* {isLoggedIn ? ( */}
           <li>
             <Link to='/logout' onClick={() => handleLogout()}>
               Logout
             </Link>
           </li>
-
+          {/* }) : (*/}
           <>
             <li>
               <Link to='/login'>Login</Link>
@@ -51,6 +80,7 @@ const NavBar = () => {
               <Link to='/register'>Register</Link>
             </li>
           </>
+          {/* )} */}
         </div>
       </ul>
     </nav>

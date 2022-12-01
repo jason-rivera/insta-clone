@@ -4,7 +4,7 @@ import { useEffect, useContext, useState, useRef } from 'react';
 import { getUserByUsername } from '../../api/usersAPI';
 import { baseUrl } from '../../config';
 
-export const ProfileEditPage = () => {
+const ProfileEditPage = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -75,3 +75,5 @@ export const ProfileEditPage = () => {
     </div>
   );
 };
+
+export default ProfileEditPage;

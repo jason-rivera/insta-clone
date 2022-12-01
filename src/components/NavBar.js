@@ -43,34 +43,29 @@ const NavBar = () => {
           <li>
             <Link to='/about'>About</Link>
           </li>
-          <li>
-            <button onClick={() => handleIsLoggedIn()}>verify</button>
-          </li>
-          {isLoggedIn && (
-            <>
-              <li>
-                <Link to='/users'>Users</Link>
-              </li>
-              <li>
-                <Link to='/profile'>Profile</Link>
-              </li>
-              <li>
-                <Link to='/feed'>Feed</Link>
-              </li>
-              <li>
-                <Link to='/tweet'>Tweet</Link>
-              </li>
-            </>
-          )}
+
+          <>
+            <li>
+              <Link to='/users'>Users</Link>
+            </li>
+            <li>
+              <Link to='/profile'>Profile</Link>
+            </li>
+            <li>
+              <Link to='/feed'>Feed</Link>
+            </li>
+            <li>
+              <Link to='/tweet'>Tweet</Link>
+            </li>
+          </>
         </div>
         <div className={styles.navSection}>
-          {/* {isLoggedIn ? ( */}
           <li>
             <Link to='/logout' onClick={() => handleLogout()}>
               Logout
             </Link>
           </li>
-          {/* }) : (*/}
+
           <>
             <li>
               <Link to='/login'>Login</Link>
@@ -80,7 +75,6 @@ const NavBar = () => {
               <Link to='/register'>Register</Link>
             </li>
           </>
-          {/* )} */}
         </div>
       </ul>
     </nav>

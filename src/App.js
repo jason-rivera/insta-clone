@@ -14,6 +14,7 @@ import ProfileEditPage from './pages/ProfileEdit/ProfileEditPage';
 import FeedPage from './pages/Feed/FeedPage';
 import TweetPage from './pages/Tweet/TweetPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
+import RequireAuth from './components/RequireAuth';
 import './App.css';
 
 function App() {
@@ -29,13 +30,15 @@ function App() {
         <Route path='/login/success' element={<LoginSuccessPage />} />
         <Route path='/logout' element={<LogoutSuccessPage />} />
 
-        {/** PROTECTED - Need to do... */}
-        <Route path='/users' element={<UsersPage />} />
-        <Route path='/users/:username' element={<SingleUserPage />} />
-        <Route path='/profile' element={<ProfilePage />} />
-        <Route path='/profile/edit' element={<ProfileEditPage />} />
-        <Route path='/feed' element={<FeedPage />} />
-        <Route path='/tweet' element={<TweetPage />} />
+        {/** PROTECTED - Need to do... NOT WORKING */}
+        <Route element={<RequireAuth />}>
+          <Route path='/users' element={<UsersPage />} />
+          <Route path='/users/:username' element={<SingleUserPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/profile/edit' element={<ProfileEditPage />} />
+          <Route path='/feed' element={<FeedPage />} />
+          <Route path='/tweet' element={<TweetPage />} />
+        </Route>
 
         {/** Catch All */}
         <Route path='*' element={<NotFoundPage />} />

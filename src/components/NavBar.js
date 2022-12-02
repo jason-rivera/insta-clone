@@ -12,7 +12,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     handleIsLoggedIn();
-    setUser({});
+    setUser(null);
     removeUserFromLocalStorage();
   };
 

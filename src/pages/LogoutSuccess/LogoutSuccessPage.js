@@ -7,7 +7,7 @@ const LogoutSuccessPage = () => {
 
   useEffect(() => {
     removeUserFromLocalStorage();
-    setUser({});
+    setUser(null);
   }, []);
 
   return (

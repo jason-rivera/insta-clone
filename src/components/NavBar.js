@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { removeUserFromLocalStorage } from '../util';
 import styles from './NavBar.module.css';
 import { verifyCurrentUser } from '../api/verifyAPI';
+import { UserContext } from '../UserContext';
 
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const { setUser } = useContext(UserContext);
+
   const handleLogout = () => {
     handleIsLoggedIn();
+    setUser({});
     removeUserFromLocalStorage();
   };
 

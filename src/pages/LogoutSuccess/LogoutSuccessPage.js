@@ -1,9 +1,13 @@
 import { useContext, useEffect } from 'react';
 import { removeUserFromLocalStorage } from '../../util';
+import { UserContext } from '../../UserContext';
 
 const LogoutSuccessPage = () => {
+  const { setUser } = useContext(UserContext);
+
   useEffect(() => {
     removeUserFromLocalStorage();
+    setUser({});
   }, []);
 
   return (

@@ -11,6 +11,7 @@ import LoginSuccessPage from './pages/LoginSuccess/LoginSuccessPage';
 import LogoutSuccessPage from './pages/LogoutSuccess/LogoutSuccessPage';
 import ProfilePage from './pages/Profile/ProfilePage';
 import ProfileEditPage from './pages/ProfileEdit/ProfileEditPage';
+import ProfileUpdateSuccessPage from './pages/ProfileUpdateSuccess/ProfileUpdateSuccessPage';
 import FeedPage from './pages/Feed/FeedPage';
 import TweetPage from './pages/Tweet/TweetPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
@@ -42,6 +43,10 @@ function App() {
             <Route path='/users/:username' element={<SingleUserPage />} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/profile/edit' element={<ProfileEditPage />} />
+            <Route
+              path='/profile/edit/success'
+              element={<ProfileUpdateSuccessPage />}
+            />
             <Route path='/feed' element={<FeedPage />} />
             <Route path='/tweet' element={<TweetPage />} />
           </Route>

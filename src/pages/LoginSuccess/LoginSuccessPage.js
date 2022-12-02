@@ -16,7 +16,7 @@ const LoginSuccessPage = () => {
     const response = await axios.post(
       baseUrl + '/users/get-own-data',
       {
-        accessToken: localStorage.getItem('accessToken'),
+        username: localStorage.getItem('userToken'),
       },
       {
         headers: {
@@ -27,18 +27,9 @@ const LoginSuccessPage = () => {
       }
     );
 
-    setUser(response.data[0]);
-    console.log(response);
-  };
-
-  const getAllUsers = async () => {
-    const response = await axios.get(baseUrl + '/users/get-all-users', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-      },
-    });
-
-    console.log(response);
+    // setUser(response.data[0].username);
+    console.log(response.data[0].username, 'data from server');
+    console.log(user, 'context');
   };
 
   return (
@@ -46,11 +37,6 @@ const LoginSuccessPage = () => {
       <h1>Login Success Page</h1>
       <h2>Hello {user.username}, You have successfully logged in!</h2>
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <button onClick={() => getAllUsers()}>Get All Users</button>
     </div>
   );
 };

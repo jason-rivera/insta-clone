@@ -34,7 +34,7 @@ const HomePage = () => {
     <>
       <h1>Home Page</h1>
       <p>This is the home page</p>
-      <p>context {user.username}</p>
+      {/* <p>context {user.username}</p> */}
       <br />
       <button onClick={() => handleViewUsersBtn()}>
         View All Current Users

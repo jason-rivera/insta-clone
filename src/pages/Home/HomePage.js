@@ -1,27 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { baseUrl } from '../../config';
-import axios from 'axios';
 
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../UserContext';
 
 const HomePage = () => {
   const navigate = useNavigate();
   // const { user, setUser } = useContext(UserContext);
-  const context = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   // useEffect(() => {}, []);
 
   const handleViewUsersBtn = () => {
     navigate('/users');
   };
-  const handleLoginBtn = () => {
-    navigate('/login');
-  };
-  const handleSignupBtn = () => {
-    navigate('/register');
-  };
+  // const handleLoginBtn = () => {
+  //   navigate('/login');
+  // };
+  // const handleSignupBtn = () => {
+  //   navigate('/register');
+  // };
 
   const setCookie = async () => {
     // console.log('set cookie test');
@@ -36,7 +34,7 @@ const HomePage = () => {
     <>
       <h1>Home Page</h1>
       <p>This is the home page</p>
-      <p>context {context}</p>
+      <p>context {user.username}</p>
       <br />
       <button onClick={() => handleViewUsersBtn()}>
         View All Current Users

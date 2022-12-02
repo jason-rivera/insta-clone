@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseUrl } from '../../config';
+import { UserContext } from '../../UserContext';
 
 const LoginSuccessPage = () => {
-  const [user, setUser] = useState('');
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getUsername();

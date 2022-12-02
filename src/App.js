@@ -18,10 +18,13 @@ import RequireAuth from './components/RequireAuth';
 import './App.css';
 
 import { UserContext } from './UserContext';
+import { useState } from 'react';
 
 function App() {
+  const [user, setUser] = useState({});
+
   return (
-    <UserContext.Provider value='sup sup yall'>
+    <UserContext.Provider value={{ user, setUser }}>
       <Routes>
         <Route path='/' element={<Layout />}>
           {/** Public Routes */}

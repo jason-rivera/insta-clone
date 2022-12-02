@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../config';
 import axios from 'axios';
 
-// import { useEffect, useContext } from 'react';
-// import { UserContext } from '../../UserContext';
+import { useEffect, useContext } from 'react';
+import { UserContext } from '../../UserContext';
 
 const HomePage = () => {
   const navigate = useNavigate();
   // const { user, setUser } = useContext(UserContext);
+  const context = useContext(UserContext);
 
   // useEffect(() => {}, []);
 
@@ -35,6 +36,7 @@ const HomePage = () => {
     <>
       <h1>Home Page</h1>
       <p>This is the home page</p>
+      <p>context {context}</p>
       <br />
       <button onClick={() => handleViewUsersBtn()}>
         View All Current Users

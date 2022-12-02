@@ -1,35 +1,10 @@
-import { Outlet, useLocation, Navigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { verifyCurrentUser } from '../api/verifyAPI';
+import { Outlet, Navigate } from 'react-router-dom';
 
 const RequireAuth = () => {
-  const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleIsLoggedIn = async () => {
-    const response = await verifyCurrentUser();
-    if (response.status === 200) {
-      console.log('logged in');
-      setIsLoggedIn(true);
-    } else {
-      console.log('NOT logged in');
-      setIsLoggedIn(false);
-    }
-  };
-
-  const user = {
-    name: 'yo',
-  };
-
-  useEffect(() => {
-    // handleIsLoggedIn();
-    console.log('RequireAuth Component activated');
-  }, []);
-
-  return localStorage.getItem('userToken') ? (
+  return localStorage.getItem('accessToken') ? (
     <Outlet />
   ) : (
-    <Navigate to='/login' state={{ from: location }} replace />
+    <Navigate to='/login' />
   );
 };
 

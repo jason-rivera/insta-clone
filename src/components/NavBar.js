@@ -8,7 +8,7 @@ import { UserContext } from '../UserContext';
 const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const handleLogout = () => {
     handleIsLoggedIn();
@@ -48,37 +48,41 @@ const NavBar = () => {
             <Link to='/about'>About</Link>
           </li>
 
-          <>
-            <li>
-              <Link to='/users'>Users</Link>
-            </li>
-            <li>
-              <Link to='/profile'>Profile</Link>
-            </li>
-            <li>
-              <Link to='/feed'>Feed</Link>
-            </li>
-            <li>
-              <Link to='/tweet'>Tweet</Link>
-            </li>
-          </>
+          {user && (
+            <>
+              <li>
+                <Link to='/users'>Users</Link>
+              </li>
+              <li>
+                <Link to='/profile'>Profile</Link>
+              </li>
+              <li>
+                <Link to='/feed'>Feed</Link>
+              </li>
+              <li>
+                <Link to='/tweet'>Tweet</Link>
+              </li>
+            </>
+          )}
         </div>
         <div className={styles.navSection}>
-          <li>
-            <Link to='/logout' onClick={() => handleLogout()}>
-              Logout
-            </Link>
-          </li>
-
-          <>
+          {user ? (
             <li>
-              <Link to='/login'>Login</Link>
+              <Link to='/logout' onClick={() => handleLogout()}>
+                Logout
+              </Link>
             </li>
+          ) : (
+            <>
+              <li>
+                <Link to='/login'>Login</Link>
+              </li>
 
-            <li>
-              <Link to='/register'>Register</Link>
-            </li>
-          </>
+              <li>
+                <Link to='/register'>Register</Link>
+              </li>
+            </>
+          )}
         </div>
       </ul>
     </nav>

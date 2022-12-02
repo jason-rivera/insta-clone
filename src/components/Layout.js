@@ -1,11 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from './NavBar';
+import { useContext } from 'react';
+import { UserContext } from '../UserContext';
 
 const Layout = () => {
+  const { user } = useContext(UserContext);
+
   return (
     <div>
       <NavBar />
-      Logged (or not) in as: XXXXXXX
+      {user && `Logged in as: ${user.username}`}
       <Outlet />
     </div>
   );

@@ -21,7 +21,7 @@ const HomePage = () => {
 
   return (
     <>
-      <h1>Home Page</h1>
+      <h1>Welcome to PEN PALS!</h1>
       {user && <p>Hello {user.username}</p>}
       <p>This is the home page</p>
 

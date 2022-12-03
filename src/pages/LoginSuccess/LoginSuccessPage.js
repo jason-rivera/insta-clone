@@ -12,11 +12,10 @@ const LoginSuccessPage = () => {
   }, []);
 
   const getUsername = async () => {
-    console.log(localStorage.getItem('accessToken'), 'login success page');
     const response = await axios.post(
       baseUrl + '/users/get-own-data',
       {
-        username: localStorage.getItem('userToken'),
+        username: user.username,
       },
       {
         headers: {
@@ -28,8 +27,8 @@ const LoginSuccessPage = () => {
     );
 
     // setUser(response.data[0].username);
-    console.log(response.data[0].username, 'data from server');
-    console.log(user, 'context');
+    // console.log(response.data[0].username, 'data from server');
+    // console.log(user, 'context');
   };
 
   return (

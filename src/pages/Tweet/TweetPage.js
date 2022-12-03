@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { baseUrl } from '../../config';
 import { useState, useEffect, useContext } from 'react';
-// import { UserContext, setUserContextFromLocalStorage } from '../../UserContext';
+import { UserContext } from '../../UserContext';
 
 const TweetPage = () => {
   const [tweet, setTweet] = useState('');
-  // const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const handleTweetSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const TweetPage = () => {
       baseUrl + '/tweets/tweet',
       {
         tweet: tweet,
-        username: localStorage.getItem('userToken'),
+        username: user.username,
       },
       {
         headers: {

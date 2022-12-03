@@ -7,6 +7,7 @@ import axios from 'axios';
 import { baseUrl } from '../../config';
 
 const ProfileEditPage = () => {
+  const { user, setUser } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -14,11 +15,11 @@ const ProfileEditPage = () => {
 
   const navigate = useNavigate();
 
-  // const {setUser} = useContext(UserContext)
-
   const getUserInformation = async () => {
-    const response = await getUserByUsername(localStorage.getItem('userToken'));
+    const response = await getUserByUsername(user.username);
+
     setUsername(response.username);
+    setUser({ username: response.username });
     setFirstName(response.firstName);
     setLastName(response.lastName);
     setEmail(response.email);
@@ -32,12 +33,10 @@ const ProfileEditPage = () => {
     console.log('handling profile update button');
     document.getElementById('update-success-msg').innerHTML = '';
 
-    // console.log(username, firstName, lastName, email, 'info to update TO');
-
     const response = await axios.patch(
       baseUrl + '/profile/update',
       {
-        usernameOld: localStorage.getItem('userToken'),
+        usernameOld: user.username,
         usernameNew: username,
         firstName: firstName,
         lastName: lastName,
@@ -51,12 +50,15 @@ const ProfileEditPage = () => {
     );
     console.log(response, 'update profile response');
 
-    //if success navigate to success page
-    // navigate('/profile/edit/success')
-
-    //if there's an error, stay on page and display error message
-    document.getElementById('update-success-msg').innerHTML =
-      'There was an error';
+    //if success navigate to success page + update context
+    if (response?.status === 200) {
+      setUser({ username: username });
+      navigate('/profile/edit/success');
+    } else {
+      //if there's an error, stay on page and display error message
+      document.getElementById('update-success-msg').innerHTML =
+        'There was an error';
+    }
   };
 
   return (

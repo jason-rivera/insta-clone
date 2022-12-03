@@ -20,8 +20,12 @@ const ProfilePage = () => {
   }, []);
 
   const getUserInformation = async () => {
+    console.log(user.username);
     const response = await getUserByUsername(user.username);
+    console.log(response, 'getUserInformation - Profile Page');
+
     setUsername(response.username);
+    setUser({ username: response.username });
     setFirstName(response.firstName);
     setLastName(response.lastName);
     setEmail(response.email);

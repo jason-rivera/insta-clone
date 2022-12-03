@@ -12,6 +12,7 @@ const ProfilePage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   console.log(user);
 
@@ -29,6 +30,7 @@ const ProfilePage = () => {
     setFirstName(response.firstName);
     setLastName(response.lastName);
     setEmail(response.email);
+    setAvatar(response.avatar);
   };
 
   return (
@@ -37,6 +39,7 @@ const ProfilePage = () => {
       <p>View Count: XXX</p>
       <p>This is your profile page</p>
 
+      {avatar && <img src={avatar} />}
       <div>Username: {username}</div>
       <div>First Name: {firstName}</div>
       <div>Last Name: {lastName}</div>

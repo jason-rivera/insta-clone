@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { register } from '../../api/usersAPI';
 
 const RegisterPage = () => {
+  const [avatar, setAvatar] = useState('');
+  const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [weaknesses, setWeaknesses] = useState([]);
@@ -24,17 +25,47 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    document.getElementById('error-msg').innerHTML = '';
+
+    console.log(avatar);
+
     let response = await register(
       firstName,
       lastName,
       username,
       email,
-      password
+      password,
+      avatar
     );
 
     if (response.status === 200) {
       navigate('/register/success');
+    } else {
+      document.getElementById('error-msg').innerHTML = 'Something went wrong';
     }
+  };
+
+  const handleFileUpload = async (event) => {
+    console.log(event.target.files);
+    const file = event.target.files[0];
+    const base64 = await convertToBase64(file);
+    setAvatar(base64);
+    console.log(base64);
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
   };
 
   const strengthMeter = document.getElementById('strengthMeter');
@@ -135,6 +166,17 @@ const RegisterPage = () => {
       <h1>Register</h1>
       <h2>This is the register page</h2>
       <form className={styles.registerForm}>
+        <img src={avatar} />
+        <label htmlFor='avatar'>Avatar (150x150)</label>
+        <input
+          id='avatar'
+          className={styles.inputField}
+          type='file'
+          onChange={async (event) => {
+            handleFileUpload(event);
+          }}
+          aria-labelledby='avatar'
+        />
         <label htmlFor='username'>Username</label>
         <input
           id='username'
@@ -193,6 +235,7 @@ const RegisterPage = () => {
         </div>
         <br />
         <button onClick={(e) => handleSubmit(e)}>Register</button>
+        <div id='error-msg'></div>
       </form>
     </div>
   );

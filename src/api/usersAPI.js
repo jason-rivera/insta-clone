@@ -51,7 +51,8 @@ export const register = async (
   lastName,
   username,
   email,
-  password
+  password,
+  avatar
 ) => {
   try {
     let response = await axios.post(
@@ -62,6 +63,7 @@ export const register = async (
         username: username,
         email: email,
         password: password,
+        avatar: avatar,
       },
       {
         headers: {

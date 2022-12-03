@@ -6,6 +6,7 @@ import { UserContext } from '../../UserContext';
 
 const LoginSuccessPage = () => {
   const { user, setUser } = useContext(UserContext);
+  const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
     getUsername();
@@ -26,6 +27,10 @@ const LoginSuccessPage = () => {
       }
     );
 
+    console.log(response, 'login successe page');
+    console.log(response.data[0].avatar);
+    setAvatar(response.data[0].avatar);
+
     // setUser(response.data[0].username);
     // console.log(response.data[0].username, 'data from server');
     // console.log(user, 'context');
@@ -35,6 +40,7 @@ const LoginSuccessPage = () => {
     <div>
       <h1>Login Success Page</h1>
       <h2>Hello {user.username}, You have successfully logged in!</h2>
+      {avatar && <img src={avatar} />}
       <br />
     </div>
   );

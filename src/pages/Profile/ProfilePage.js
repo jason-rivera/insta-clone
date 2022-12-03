@@ -8,7 +8,24 @@ import { UserContext } from '../../UserContext';
 const ProfilePage = () => {
   const { user, setUser } = useContext(UserContext);
 
-  useEffect(() => {}, []);
+  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+
+  console.log(user);
+
+  useEffect(() => {
+    getUserInformation();
+  }, []);
+
+  const getUserInformation = async () => {
+    const response = await getUserByUsername(user.username);
+    setUsername(response.username);
+    setFirstName(response.firstName);
+    setLastName(response.lastName);
+    setEmail(response.email);
+  };
 
   return (
     <div>
@@ -16,10 +33,10 @@ const ProfilePage = () => {
       <p>View Count: XXX</p>
       <p>This is your profile page</p>
 
-      <div>Username: {user.username}</div>
-      <div>First Name: {user.firstName}</div>
-      <div>Last Name: {user.lastName}</div>
-      <div>Email: {user.email}</div>
+      <div>Username: {username}</div>
+      <div>First Name: {firstName}</div>
+      <div>Last Name: {lastName}</div>
+      <div>Email: {email}</div>
 
       <br />
       <Link to='/profile/edit'>

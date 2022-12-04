@@ -5,7 +5,7 @@ const ENDPOINT_PREFIX = '/users';
 
 export const getAllUsers = async () => {
   try {
-    let response = await axios.get(
+    const response = await axios.get(
       baseUrl + ENDPOINT_PREFIX + '/get-all-users',
       {
         headers: {
@@ -21,7 +21,7 @@ export const getAllUsers = async () => {
 };
 
 export const getUserByUsername = async (username) => {
-  let response = await axios.get(
+  const response = await axios.get(
     baseUrl + ENDPOINT_PREFIX + `/username/${username}`,
     {
       headers: {
@@ -43,6 +43,18 @@ export const getUserById = async (id) => {
   } else {
     console.log(response);
   }
+};
+
+export const deleteAllUsers = async () => {
+  const response = await axios.delete(
+    baseUrl + ENDPOINT_PREFIX + '/delete-all-users',
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      },
+    }
+  );
+  return response;
 };
 
 //maybe move this one into it's own registerAPI.js

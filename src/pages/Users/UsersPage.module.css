@@ -1,0 +1,38 @@
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.usersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.singleUserContainer {
+  border: 1px solid black;
+  background-color: rgb(237, 237, 237);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 250px;
+  width: 250px;
+}
+
+.avatarContainer {
+  /** handles empty images */
+  border: 1px solid lightgrey;
+  border-radius: 100%;
+  background-color: white;
+  height: 150px;
+  width: 150px;
+}
+
+.avatarImage {
+  border: 1px solid lightgrey;
+  border-radius: 100%;
+  background-color: white;
+  height: 150px;
+  width: 150px;
+}

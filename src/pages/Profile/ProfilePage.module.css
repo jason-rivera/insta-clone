@@ -3,3 +3,8 @@
   flex-direction: column;
   align-items: center;
 }
+
+.avatarImage {
+  height: 150px;
+  width: 150px;
+}

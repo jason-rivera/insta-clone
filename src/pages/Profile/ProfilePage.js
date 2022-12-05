@@ -40,7 +40,7 @@ const ProfilePage = () => {
       <p>View Count: XXX</p>
       <p>This is your profile page</p>
 
-      {avatar && <img src={avatar} />}
+      {avatar && <img className={styles.avatarImage} src={avatar} />}
       <div>Username: {username}</div>
       <div>First Name: {firstName}</div>
       <div>Last Name: {lastName}</div>

@@ -41,7 +41,7 @@ const LoginSuccessPage = () => {
     <div className={styles.loginSuccessPageContainer}>
       <h1>Login Success Page</h1>
       <h2>Hello {user.username}, You have successfully logged in!</h2>
-      {avatar && <img src={avatar} />}
+      {avatar && <img className={styles.avatarImage} src={avatar} />}
       <br />
     </div>
   );

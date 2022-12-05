@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../api/authAPI';
 import { UserContext } from '../../UserContext';
+import styles from './LoginPage.module.css';
+import global from '../../styles/global.module.css';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -41,9 +43,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.loginPageContainer}>
       <h1>Login Page</h1>
-      <form>
+      <form className={styles.loginForm}>
         <label htmlFor='username'>Username</label>
         <input
           id='username'
@@ -61,7 +63,9 @@ const LoginPage = () => {
           }}
         ></input>
         <br />
-        <button onClick={(e) => handleLogin(e)}>Login</button>
+        <button className={global.btn} onClick={(e) => handleLogin(e)}>
+          Login
+        </button>
       </form>
       <br />
       <br />

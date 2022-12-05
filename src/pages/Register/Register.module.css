@@ -4,10 +4,20 @@
   box-sizing: border-box;
 }
 
+.registerPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .registerForm {
   display: flex;
   flex-direction: column;
   max-width: 40%;
+}
+
+.registerForm label {
+  margin-top: 20px;
 }
 
 .strengthMeter {

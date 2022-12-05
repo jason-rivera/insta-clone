@@ -4,21 +4,6 @@
   text-align: center;
 }
 
-.btn {
-  background: rgb(0, 255, 255);
-  font-weight: bold;
-  color: black;
-  border: none;
-  width: 200px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-.btn:hover {
-  cursor: pointer;
-  background: rgb(0, 255, 255, 0.5);
-}
-
 .bottomBtnsContainer {
   display: flex;
   gap: 20px;

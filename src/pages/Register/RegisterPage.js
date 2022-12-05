@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './Register.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../api/usersAPI';
+import styles from './Register.module.css';
+import global from '../../styles/global.module.css';
 
 const RegisterPage = () => {
   const [avatar, setAvatar] = useState('');
@@ -165,9 +166,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.registerPageContainer}>
       <h1>Register</h1>
-      <h2>This is the register page</h2>
       <form className={styles.registerForm}>
         <img src={avatar} />
         <label htmlFor='avatar'>Avatar (150x150)</label>
@@ -237,7 +237,9 @@ const RegisterPage = () => {
           asdf
         </div>
         <br />
-        <button onClick={(e) => handleSubmit(e)}>Register</button>
+        <button className={global.btn} onClick={(e) => handleSubmit(e)}>
+          Register
+        </button>
         <div id='error-msg' className={styles.errorMsg}></div>
       </form>
     </div>

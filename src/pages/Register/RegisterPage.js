@@ -44,7 +44,11 @@ const RegisterPage = () => {
     } else if (response.response.status === 413) {
       document.getElementById('error-msg').innerHTML =
         'Your Avatar is too large. Please choose something smaller in size.';
+    } else if (response.response.status === 409) {
+      document.getElementById('error-msg').innerHTML =
+        'One of the fields already exists in our database';
     } else {
+      console.log(response);
       document.getElementById('error-msg').innerHTML = 'Something went wrong';
     }
   };

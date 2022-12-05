@@ -29,11 +29,8 @@ const FeedPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.feedPageContainer}>
       <h1>Feed</h1>
-      <p>This is the feed page</p>
-      <br />
-      <br />
       <br />
       {tweets.length ? (
         tweets.reverse().map((tweet) => (

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { baseUrl } from '../../config';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
+import styles from './ProfilePage.module.css';
 
 const ProfilePage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -34,7 +35,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.profilePageContainer}>
       <h1>{user.username}'s Profile Page</h1>
       <p>View Count: XXX</p>
       <p>This is your profile page</p>

@@ -32,7 +32,7 @@ const SingleUserPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.singleUserPageContainer}>
       <h1>{singleUser.username}'s information</h1>
       {singleUser.avatar && (
         <img className={styles.avatar} src={singleUser.avatar} />

@@ -5,6 +5,7 @@ import { UserContext } from '../../UserContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../config';
+import styles from './ProfileEditPage.module.css';
 
 const ProfileEditPage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -62,7 +63,7 @@ const ProfileEditPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.profileEditPageContainer}>
       <h1>Edit Profile</h1>
       <p>This is the edit profile page</p>
       Username:{' '}

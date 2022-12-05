@@ -30,7 +30,7 @@ const UsersPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.usersPageContainer}>
       <h1>Users</h1>
       <h2>Here is a list of users:</h2>
       <div className={styles.usersContainer}>

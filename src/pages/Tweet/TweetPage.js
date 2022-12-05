@@ -2,6 +2,7 @@ import axios from 'axios';
 import { baseUrl } from '../../config';
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../UserContext';
+import styles from './TweetPage.module.css';
 
 const TweetPage = () => {
   const [tweet, setTweet] = useState('');
@@ -42,7 +43,7 @@ const TweetPage = () => {
   }, [tweet]);
 
   return (
-    <div>
+    <div className={styles.tweetPageContainer}>
       <h1>Tweet</h1>
       <p>Go ahead and tweet!</p>
 

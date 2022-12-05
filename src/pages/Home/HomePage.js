@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../UserContext';
+import styles from './HomePage.module.css';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -20,14 +21,14 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div className={styles.homePageContainer}>
       <h1>Welcome to PAL!</h1>
       <h2>Place for ALL!</h2>
       {user && <p>Hello {user.username}</p>}
       <p>This is the home page</p>
 
       <br />
-      <button onClick={() => handleViewUsersBtn()}>
+      <button className={styles.btn} onClick={() => handleViewUsersBtn()}>
         View All Current Users
       </button>
       <br />
@@ -35,16 +36,22 @@ const HomePage = () => {
       <br />
       <br />
       {!user && (
-        <>
-          <button onClick={() => handleLoginBtn()}>Login</button>
-          <br />
-          <br />
-          <button onClick={() => handleSignupBtn()}>
-            Not A Member? Sign Up!
-          </button>
-        </>
+        <div className={styles.bottomBtnsContainer}>
+          <div>
+            <p>Already a member?</p>
+            <button className={styles.btn} onClick={() => handleLoginBtn()}>
+              Login
+            </button>
+          </div>
+          <div>
+            <p>Not a member?</p>
+            <button className={styles.btn} onClick={() => handleSignupBtn()}>
+              Register today!
+            </button>
+          </div>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -40,6 +40,9 @@ const RegisterPage = () => {
 
     if (response.status === 200) {
       navigate('/register/success');
+    } else if (response.response.status === 413) {
+      document.getElementById('error-msg').innerHTML =
+        'Your Avatar is too large. Please choose something smaller in size.';
     } else {
       document.getElementById('error-msg').innerHTML = 'Something went wrong';
     }
@@ -235,7 +238,7 @@ const RegisterPage = () => {
         </div>
         <br />
         <button onClick={(e) => handleSubmit(e)}>Register</button>
-        <div id='error-msg'></div>
+        <div id='error-msg' className={styles.errorMsg}></div>
       </form>
     </div>
   );

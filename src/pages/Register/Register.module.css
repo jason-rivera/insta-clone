@@ -42,3 +42,7 @@
   margin-top: 0.5rem;
   color: hsl(100, 77%, 80%);
 }
+
+.errorMsg {
+  color: red;
+}

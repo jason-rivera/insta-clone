@@ -3,20 +3,20 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  background: lightgrey;
+  background: rgb(55, 55, 55);
   list-style-type: none;
   color: white;
   margin: 0px;
 }
 
 .navContainer a {
-  color: darkslategray;
+  color: white;
   font-weight: bold;
   text-decoration: none;
 }
 
 .navContainer a:hover {
-  color: black;
+  color: rgb(255, 0, 179);
 }
 
 .navSection {

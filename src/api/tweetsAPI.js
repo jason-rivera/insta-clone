@@ -16,6 +16,15 @@ export const getAllTweets = async () => {
   return response;
 };
 
+export const getAllTweetsByUsername = async (username) => {
+  const response = await axios.get(baseUrl + ENDPOINT_PREFIX + `/${username}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    },
+  });
+  return response;
+};
+
 export const deleteAllTweets = async () => {
   const response = await axios.delete(baseUrl + '/tweets/delete-all', {
     headers: {

@@ -5,11 +5,13 @@ import { baseUrl } from '../../../config';
 import { getUserByUsername } from '../../../api/usersAPI';
 import { UserContext } from '../../../UserContext';
 import styles from './SingleUserPage.module.css';
+import { getAllTweetsByUsername } from '../../../api/tweetsAPI';
 
 const SingleUserPage = () => {
   const [singleUser, setSingleUser] = useState({});
   const { user, setUser } = useContext(UserContext);
   const [isCurrentUser, setIsCurrentUser] = useState(false);
+  const [tweets, setTweets] = useState([]);
   let username = useParams().username;
 
   useEffect(() => {
@@ -20,7 +22,14 @@ const SingleUserPage = () => {
     }
     console.log(isCurrentUser, ': isCurrentUser');
     getUserByUsername(username).then((response) => setSingleUser(response));
+    fetchTweetsByUsername();
   }, [isCurrentUser]);
+
+  const fetchTweetsByUsername = async () => {
+    const response = await getAllTweetsByUsername(singleUser.username);
+    console.log(response, 'fetch tweets by username');
+    setTweets(response.data);
+  };
 
   return (
     <div>
@@ -32,6 +41,21 @@ const SingleUserPage = () => {
       <p>First name: {singleUser.firstName}</p>
       <p>Last name: {singleUser.lastName}</p>
       <p>Email: {singleUser.email}</p>
+      <p>Tweets:</p>
+      {tweets ? (
+        tweets.map((tweet) => (
+          <div id={tweet._id}>
+            <p>
+              {tweet.tweet}
+              <span className={styles.postedOn}>
+                posted on {tweet.createdAt}
+              </span>
+            </p>
+          </div>
+        ))
+      ) : (
+        <p>This user currently does not have any tweets</p>
+      )}
     </div>
   );
 };

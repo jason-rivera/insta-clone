@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { baseUrl } from '../../config';
 import { UserContext } from '../../UserContext';
+import styles from './LoginSuccessPage.module.css';
 
 const LoginSuccessPage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -37,7 +38,7 @@ const LoginSuccessPage = () => {
   };
 
   return (
-    <div>
+    <div className={styles.loginSuccessPageContainer}>
       <h1>Login Success Page</h1>
       <h2>Hello {user.username}, You have successfully logged in!</h2>
       {avatar && <img src={avatar} />}

@@ -6,6 +6,7 @@ import { getUserByUsername } from '../../../api/usersAPI';
 import { UserContext } from '../../../UserContext';
 import styles from './SingleUserPage.module.css';
 import { getAllTweetsByUsername } from '../../../api/tweetsAPI';
+import stockAvatar from '../../../assets/stockAvatar2.jpg';
 
 const SingleUserPage = () => {
   const [singleUser, setSingleUser] = useState({});
@@ -34,8 +35,10 @@ const SingleUserPage = () => {
   return (
     <div className={styles.singleUserPageContainer}>
       <h1>{singleUser.username}'s information</h1>
-      {singleUser.avatar && (
-        <img className={styles.avatar} src={singleUser.avatar} />
+      {singleUser.avatar ? (
+        <img className={styles.avatarImage} src={singleUser.avatar} />
+      ) : (
+        <img className={styles.avatarImage} src={stockAvatar} />
       )}
       <p>Username: {singleUser.username}</p>
       <p>First name: {singleUser.firstName}</p>

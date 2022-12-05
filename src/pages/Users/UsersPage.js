@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getAllUsers } from '../../api/usersAPI';
 import { deleteAllUsers } from '../../api/usersAPI';
 import styles from './UsersPage.module.css';
+import stockAvatar from '../../assets/stockAvatar2.jpg';
 
 const UsersPage = () => {
   const navigate = useNavigate();
@@ -32,14 +33,15 @@ const UsersPage = () => {
   return (
     <div className={styles.usersPageContainer}>
       <h1>Users</h1>
-      <h2>Here is a list of users:</h2>
       <div className={styles.usersContainer}>
         {users?.length ? (
           users?.map((user, index) => (
             <div className={styles.singleUserContainer} key={user._id}>
               <div className={styles.avatarContainer}>
-                {user.avatar && (
+                {user.avatar ? (
                   <img className={styles.avatarImage} src={user.avatar} />
+                ) : (
+                  <img className={styles.avatarImage} src={stockAvatar} />
                 )}
               </div>
               <p>

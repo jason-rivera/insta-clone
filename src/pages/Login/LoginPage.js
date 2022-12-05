@@ -19,6 +19,13 @@ const LoginPage = () => {
     e.preventDefault();
     document.getElementById('error-message').innerHTML = '';
 
+    if (username === '' || password === '') {
+      console.log('missing fields');
+      document.getElementById('error-message').innerHTML =
+        'You are missing some fields.';
+      return;
+    }
+
     try {
       const response = await login(username, password);
 
@@ -69,7 +76,7 @@ const LoginPage = () => {
       </form>
       <br />
       <br />
-      <div id='error-message'></div>
+      <div className={styles.errorMsg} id='error-message'></div>
       <br />
       <br />
       <br />

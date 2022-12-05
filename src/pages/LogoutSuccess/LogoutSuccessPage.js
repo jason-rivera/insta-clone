@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { removeUserFromLocalStorage } from '../../util';
 import { UserContext } from '../../UserContext';
+import styles from './LogoutSuccessPage.module.css';
 
 const LogoutSuccessPage = () => {
   const { setUser } = useContext(UserContext);
@@ -11,7 +12,7 @@ const LogoutSuccessPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className={styles.logoutSuccessPageContainer}>
       <h1>Logout Page</h1>
       <p>You have successfully logged out</p>
     </div>

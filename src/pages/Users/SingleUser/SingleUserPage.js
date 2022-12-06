@@ -11,23 +11,16 @@ import stockAvatar from '../../../assets/stockAvatar2.jpg';
 const SingleUserPage = () => {
   const [singleUser, setSingleUser] = useState({});
   const { user, setUser } = useContext(UserContext);
-  const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [tweets, setTweets] = useState([]);
   let username = useParams().username;
 
   useEffect(() => {
-    if (username == user.username) {
-      setIsCurrentUser(true);
-    } else {
-      setIsCurrentUser(false);
-    }
-    console.log(isCurrentUser, ': isCurrentUser');
     getUserByUsername(username).then((response) => setSingleUser(response));
     fetchTweetsByUsername();
-  }, [isCurrentUser]);
+  }, []);
 
   const fetchTweetsByUsername = async () => {
-    const response = await getAllTweetsByUsername(singleUser.username);
+    const response = await getAllTweetsByUsername(username);
     console.log(response, 'fetch tweets by username');
     setTweets(response.data);
   };

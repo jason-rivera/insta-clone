@@ -75,7 +75,7 @@ const PasswordEditPage = () => {
       <br />
       <br />
       <br />
-      <div id='update-password-error-msg'></div>
+      <div id='update-password-error-msg' className={styles.errorMsg}></div>
     </div>
   );
 };

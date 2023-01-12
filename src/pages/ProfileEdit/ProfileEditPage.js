@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { baseUrl } from '../../config';
 import styles from './ProfileEditPage.module.css';
+import { convertToBase64 } from '../../util';
 
 const ProfileEditPage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -13,6 +14,7 @@ const ProfileEditPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   const navigate = useNavigate();
 
@@ -24,6 +26,7 @@ const ProfileEditPage = () => {
     setFirstName(response.firstName);
     setLastName(response.lastName);
     setEmail(response.email);
+    setAvatar(response.avatar);
   };
 
   useEffect(() => {
@@ -42,6 +45,7 @@ const ProfileEditPage = () => {
         firstName: firstName,
         lastName: lastName,
         email: email,
+        avatar: avatar,
       },
       {
         headers: {
@@ -62,9 +66,41 @@ const ProfileEditPage = () => {
     }
   };
 
+  const handleFileUpload = async (event) => {
+    console.log(event.target.files);
+    const file = event.target.files[0];
+    const base64 = await convertToBase64(file);
+    setAvatar(base64);
+    console.log(base64);
+  };
+
   return (
     <div className={styles.profileEditPageContainer}>
       <h1>Edit Profile</h1>
+      <label htmlFor='avatar'>Avatar (150x150)</label>
+      {avatar ? (
+        <>
+          <img className={styles.avatarImage} src={avatar} />{' '}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setAvatar('');
+            }}
+          >
+            Remove Profile Picture
+          </button>
+        </>
+      ) : (
+        <input
+          id='avatar'
+          className={styles.inputField}
+          type='file'
+          onChange={async (event) => {
+            handleFileUpload(event);
+          }}
+          aria-labelledby='avatar'
+        />
+      )}
       <br />
       Username:{' '}
       <input

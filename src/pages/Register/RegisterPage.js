@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { register } from '../../api/usersAPI';
 import styles from './Register.module.css';
 import global from '../../styles/global.module.css';
+import { convertToBase64 } from '../../util';
 
 const RegisterPage = () => {
   const [avatar, setAvatar] = useState('');
@@ -60,20 +61,20 @@ const RegisterPage = () => {
     console.log(base64);
   };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+  // const convertToBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
 
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
 
   return (
     <div className={styles.registerPageContainer}>

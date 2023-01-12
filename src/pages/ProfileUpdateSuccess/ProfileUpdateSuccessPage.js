@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../UserContext';
 import { getUserByUsername } from '../../api/usersAPI';
+import styles from './ProfileUpdateSuccessPage.module.css';
 
 const ProfileUpdateSuccessPage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -9,6 +10,7 @@ const ProfileUpdateSuccessPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
     handleGetUser();
@@ -23,12 +25,14 @@ const ProfileUpdateSuccessPage = () => {
     setFirstName(response.firstName);
     setLastName(response.lastName);
     setEmail(response.email);
+    setAvatar(response.avatar);
   };
 
   return (
-    <div>
+    <div className={styles.profileUpdateSuccessPageContainer}>
       <h1>ProfileUpdateSuccessPage</h1>
       <p>Updated user information:</p>
+      {avatar && <img className={styles.avatarImage} src={avatar} />}
       <div>Username: {username}</div>
       <div>First Name: {firstName}</div>
       <div>Last Name: {lastName}</div>

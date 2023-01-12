@@ -65,7 +65,7 @@ const ProfileEditPage = () => {
   return (
     <div className={styles.profileEditPageContainer}>
       <h1>Edit Profile</h1>
-      <p>This is the edit profile page</p>
+      <br />
       Username:{' '}
       <input
         id='username-input'
@@ -98,7 +98,9 @@ const ProfileEditPage = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
-      <button>Change Password</button>
+      <button onClick={() => navigate('/profile/password/edit')}>
+        Change Password
+      </button>
       <br />
       <br />
       <br />

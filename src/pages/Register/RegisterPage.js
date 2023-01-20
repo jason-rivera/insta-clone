@@ -80,26 +80,32 @@ const RegisterPage = () => {
     <div className={styles.registerPageContainer}>
       <h1>Register</h1>
       <form className={styles.registerForm}>
-        <img src={avatar} />
-        <label htmlFor='avatar'>Avatar (150x150)</label>
-        <input
-          id='avatar'
-          className={styles.inputField}
-          type='file'
-          onChange={async (event) => {
-            handleFileUpload(event);
-          }}
-          aria-labelledby='avatar'
-        />
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log('removing');
-            setAvatar('');
-          }}
-        >
-          Remove Profile Picture
-        </button>
+        {avatar ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              console.log('removing');
+              setAvatar('');
+            }}
+          >
+            Remove Profile Picture
+          </button>
+        ) : (
+          <>
+            <img src={avatar} />
+            <label htmlFor='avatar'>Avatar (150x150)</label>
+            <input
+              id='avatar'
+              className={styles.inputField}
+              type='file'
+              onChange={async (event) => {
+                handleFileUpload(event);
+              }}
+              aria-labelledby='avatar'
+            />
+          </>
+        )}
+
         <label htmlFor='username'>Username</label>
         <input
           id='username'

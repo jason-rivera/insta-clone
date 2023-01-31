@@ -81,18 +81,20 @@ const RegisterPage = () => {
       <h1>Register</h1>
       <form className={styles.registerForm}>
         {avatar ? (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              console.log('removing');
-              setAvatar('');
-            }}
-          >
-            Remove Profile Picture
-          </button>
-        ) : (
           <>
             <img src={avatar} />
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                console.log('removing');
+                setAvatar('');
+              }}
+            >
+              Remove Profile Picture
+            </button>
+          </>
+        ) : (
+          <>
             <label htmlFor='avatar'>Avatar (150x150)</label>
             <input
               id='avatar'

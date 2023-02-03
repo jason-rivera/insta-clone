@@ -11,7 +11,7 @@ const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
 
   const handleLogout = () => {
-    handleIsLoggedIn();
+    // handleIsLoggedIn();
     setUser(null);
     removeUserFromLocalStorage();
   };
@@ -34,7 +34,7 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    handleIsLoggedIn();
+    // handleIsLoggedIn();
   }, [isLoggedIn, setIsLoggedIn]);
 
   return (

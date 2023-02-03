@@ -9,7 +9,7 @@ const RequireAuth = () => {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    handleVerification();
+    // handleVerification();
   }, []);
 
   const handleVerification = async () => {

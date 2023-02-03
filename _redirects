@@ -1,1 +1,1 @@
-/api/* https://twitter-clone-backend-app.herokuapp.com 200
+/api/* https://twitter-clone-backend-app.herokuapp.com/api/:splat 200

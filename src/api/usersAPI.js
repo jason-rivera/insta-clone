@@ -76,12 +76,12 @@ export const register = async (
         email: email,
         password: password,
         avatar: avatar,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        },
       }
+      // {
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      //   },
+      // }
     );
     return response;
   } catch (e) {

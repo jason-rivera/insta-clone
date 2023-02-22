@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { baseUrl } from '../../config';
 import { useEffect, useState } from 'react';
 import styles from './FeedPage.module.css';
 import { getAllTweets, deleteAllTweets } from '../../api/tweetsAPI';
+// date-fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 const FeedPage = () => {
   const [tweets, setTweets] = useState([]);
@@ -38,7 +38,11 @@ const FeedPage = () => {
             {tweet.tweet}
             <br />
             <div className={styles.postedBy}>
-              posted by {tweet.username} [{tweet.createdAt}]
+              posted by {tweet.username} [
+              {formatDistanceToNow(new Date(tweet.createdAt), {
+                addSuffix: true,
+              })}
+              ]
             </div>
           </div>
         ))

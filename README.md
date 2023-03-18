@@ -2,6 +2,4 @@
 
 View the backend [here](https://github.com/jason-rivera/insta-clone-be).
 
-
-
-![Alt Text](https://i.imgur.com/5RmuObA.mp4)
+![](https://i.imgur.com/5RmuObA.mp4)
